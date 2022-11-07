@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/fgocalculation
+    username: fgomaster
+    password: Monhan4bougan2022
+
+debug: true

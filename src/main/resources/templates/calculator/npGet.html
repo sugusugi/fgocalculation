@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>NP獲得計算～鬼周回への道～</title>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6">
+					<h1>パラメーター</h1>
+					<form action="/npGet/search" method="POST" th:object="${form}">
+						<input type="hidden" th:field=*{toolName}>
+						<div class="row">
+							<div class="col-sm-8">
+								<label class="block" for="servantName">サーバント名</label>
+								<input type="text" th:field=*{servantName}>
+							</div>
+							<div class="col-sm-4">
+								<input type="submit" value="パラメータ検索">
+							</div>
+						</div>
+					</form>
+					<form action="/npGetCalculation" method="POST"
+						th:object="${servantParameter}">
+						<input type="hidden" th:field=${form.toolName}>
+						<input type="hidden" th:field="*{servantName}">
+						<th:object th:object="${overKillHitForm}">
+							<input type="hidden" th:field="*{enemyHp1}">
+							<input type="hidden" th:field="*{enemyHp2}">
+							<input type="hidden" th:field="*{enemyHp3}">
+							<input type="hidden" th:field="*{damage1}">
+							<input type="hidden" th:field="*{damage2}">
+							<input type="hidden" th:field="*{damage3}">
+						</th:object>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="cardType">カード</label>
+								<select
+									th:field="*{cardType}">
+									<option value="バスター">バスター</option>
+									<option value="アーツ">アーツ</option>
+									<option value="クイック">クイック</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="cardBuf">カードバフ</label>
+								<input type="number" th:field="*{cardBuf}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="npGetBuf">NP獲得量バフ</label>
+								<input type="number" th:field="*{npGetBuf}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="phantasmRange">宝具範囲</label>
+								<select th:field="*{phantasmRange}">
+									<option value="単体">単体</option>
+									<option value="全体">全体</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="hit">HIT数</label> <input type="number"
+									th:field="*{hit}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="overKillHit">オーバーキルHIT数</label>
+								<input type="number" th:field="*{overKillHit}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="enemyClass1">敵クラス1</label>
+								<select name="enemyClass1" th:field="*{enemyClass1}">
+									<option value="">選択してください</option>
+									<option value="セイバー">セイバー</option>
+									<option value="アーチャー">アーチャー</option>
+									<option value="ランサー">ランサー</option>
+									<option value="ライダー">ライダー</option>
+									<option value="キャスター">キャスター</option>
+									<option value="アサシン">アサシン</option>
+									<option value="バーサーカー">バーサーカー</option>
+									<option value="シールダー">シールダー</option>
+									<option value="ルーラー">ルーラー</option>
+									<option value="アヴェンジャー">アヴェンジャー</option>
+									<option value="ムーンキャンサー">ムーンキャンサー</option>
+									<option value="アルターエゴ">アルターエゴ</option>
+									<option value="フォーリナー">フォーリナー</option>
+									<option value="プリテンダー">プリテンダー</option>
+								</select>
+							</div>
+							<input type="hidden" th:field="*{enemyClass2}" value=""
+								th:if="*{phantasmRange == '単体'}">
+							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
+								<label class="block" for="enemyClass2">敵クラス2</label>
+								<select name="enemyClass2" th:field="*{enemyClass2}">
+									<option value="">選択してください</option>
+									<option value="セイバー">セイバー</option>
+									<option value="アーチャー">アーチャー</option>
+									<option value="ランサー">ランサー</option>
+									<option value="ライダー">ライダー</option>
+									<option value="キャスター">キャスター</option>
+									<option value="アサシン">アサシン</option>
+									<option value="バーサーカー">バーサーカー</option>
+									<option value="シールダー">シールダー</option>
+									<option value="ルーラー">ルーラー</option>
+									<option value="アヴェンジャー">アヴェンジャー</option>
+									<option value="ムーンキャンサー">ムーンキャンサー</option>
+									<option value="アルターエゴ">アルターエゴ</option>
+									<option value="フォーリナー">フォーリナー</option>
+									<option value="プリテンダー">プリテンダー</option>
+								</select>
+							</div>
+							<input type="hidden" th:field="*{enemyClass3}" value=""
+								th:if="*{phantasmRange == '単体'}">
+							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
+								<label class="block" for="enemyClass3">敵クラス3</label>
+								<select name="enemyClass3" th:field="*{enemyClass3}">
+									<option value="">選択してください</option>
+									<option value="セイバー">セイバー</option>
+									<option value="アーチャー">アーチャー</option>
+									<option value="ランサー">ランサー</option>
+									<option value="ライダー">ライダー</option>
+									<option value="キャスター">キャスター</option>
+									<option value="アサシン">アサシン</option>
+									<option value="バーサーカー">バーサーカー</option>
+									<option value="シールダー">シールダー</option>
+									<option value="ルーラー">ルーラー</option>
+									<option value="アヴェンジャー">アヴェンジャー</option>
+									<option value="ムーンキャンサー">ムーンキャンサー</option>
+									<option value="アルターエゴ">アルターエゴ</option>
+									<option value="フォーリナー">フォーリナー</option>
+									<option value="プリテンダー">プリテンダー</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<input type="submit" value="計算">
+						</div>
+					</form>
+					<!-- オーバーキルHIT数自動算出 -->
+					<div class="row">
+						<h1>オーバーキルHIT数自動算出</h1>
+						<form action="/overKillCalculation" method="POST"
+							th:object="${overKillHitForm}">
+							<input type="hidden" th:field=${form.toolName}>
+							<th:block th:object="${servantParameter}">
+								<input type="hidden" th:field="*{servantName}">
+								<input type="hidden" th:field="*{cardType}">
+								<input type="hidden" th:field="*{cardBuf}">
+								<input type="hidden" th:field="*{npGetBuf}">
+								<input type="hidden" th:field="*{phantasmRange}">
+								<input type="hidden" th:field="*{hit}">
+								<input type="hidden" th:field="*{enemyClass1}">
+								<input type="hidden" th:field="*{enemyClass2}">
+								<input type="hidden" th:field="*{enemyClass3}">
+							</th:block>
+							<div class="row">
+								<div class="col-sm-4">
+									<label class="block" for="enemyHp1">敵HP1</label>
+									<input type="number" th:field="*{enemyHp1}">
+								</div>
+								<div class="col-sm-4"
+									th:if="${servantParameter.phantasmRange != '単体'}">
+									<label class="block" for="enemyHp2">敵HP2</label>
+									<input type="number" th:field="*{enemyHp2}">
+								</div>
+								<div class="col-sm-4"
+									th:if="${servantParameter.phantasmRange != '単体'}">
+									<label class="block" for="enemyHp3">敵HP3</label>
+									<input type="number" th:field="*{enemyHp3}">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4">
+									<label class="block" for="damage1">ダメージ量1</label>
+									<input type="number" th:field="*{damage1}">
+								</div>
+								<div class="col-sm-4"
+									th:if="${servantParameter.phantasmRange != '単体'}">
+									<label class="block" for="damage2">ダメージ量2</label>
+									<input type="number" th:field="*{damage2}">
+								</div>
+								<div class="col-sm-4"
+									th:if="${servantParameter.phantasmRange != '単体'}">
+									<label class="block" for="damage3">ダメージ量3</label>
+									<input type="number" th:field="*{damage3}">
+								</div>
+							</div>
+							<div class="row">
+								<input type="submit" value="算出">
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-xl-2"></div>
+				<div class="col-xl-4">
+					<h1>NP獲得量</h1>
+					<div class="row">
+						<p>オーバーキル補正あり</p>
+						<p th:text="${overKillNpGet}"></p>
+					</div>
+					<div class="row">
+						<p>オーバーキル補正なし</p>
+						<p th:text="${npGet}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

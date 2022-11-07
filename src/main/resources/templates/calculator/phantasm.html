@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>宝具計算～鬼周回への道～</title>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<div class="container">
+			<div class="row">
+				<!-- パラメーター入力欄 -->
+				<div class="col-xl-6 border">
+					<h1>パラメーター</h1>
+					<form action="/phantasm/search" method="GET" th:object="${form}">
+						<input type="hidden" th:field=*{toolName}>
+						<div class="row">
+							<div class="col-sm-6">
+								<label class="block" for="servantName">サーバント名</label>
+								<input type="text" th:field="*{servantName}">
+								<p th:text = "${errorMessage}"></p>
+							</div>
+							<div class="col-sm-3">
+								<label class="block" for="level">Lv</label>
+								<select th:field="*{level}">
+									<option value="atk">MAX</option>
+									<option value="atkLv100">100</option>
+									<option value="atkLv120">120</option>
+								</select>
+							</div>
+							<div class="col-sm-3">
+								<input type="submit" value="パラメータ検索">
+							</div>
+						</div>
+					</form>
+					<form action="/phantasmCalculation" method="GET" th:object="${servantParameter}">
+					    <input type="hidden" th:field= ${form.toolName}>
+						<input type="hidden" th:field = "*{servantName}">
+						<input type="hidden" th:field = "*{classTypeName}">
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="atk">ATK</label> <input type="number"
+									th:field="*{atk}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="fou">フォウ</label> <input type="number"
+									th:field="*{fou}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="spiritual">礼装</label> <input
+									type="number" th:field="*{spiritual}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="phantasmLv">宝具Lv</label> <select
+									th:field="*{phantasmLv}">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="phantasmCardType">カード</label> <select
+									th:field="*{phantasmCardType}">
+									<option value="バスター">バスター</option>
+									<option value="アーツ">アーツ</option>
+									<option value="クイック">クイック</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="phantasmRange">宝具範囲</label> <select
+									th:field="*{phantasmRange}">
+									<option value="単体">単体</option>
+									<option value="全体">全体</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="atkBuf">攻撃バフ</label> <input
+									type="number" th:field="*{atkBuf}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="cardBuf">カードバフ</label> <input
+									type="number" th:field="*{cardBuf}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="phantasmBuf">宝具バフ</label> <input
+									type="number" th:field="*{phantasmBuf}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label class="block" for="specialBuf">特攻バフ</label> <input
+									type="number" th:field="*{specialBuf}">
+							</div>
+							<div class="col-sm-4">
+								<label class="block" for="phantasmSpecial">宝具特攻</label> <input
+									type="number" th:field="*{phantasmSpecial}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4"  th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="classRate1">クラス相性1</label> <select
+									th:field="*{classRate1}">
+									<option value="2.0">2倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.5">0.5倍(不利)</option>
+									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+								</select>
+							</div>
+							<div class="col-sm-4" th:if = "*{phantasmRange == '単体'}">
+								<label class="block" for="classRate1">クラス相性</label> <select
+									th:field="*{classRate1}">
+									<option value="2.0">2倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.5">0.5倍(不利)</option>
+									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+								</select>
+							</div>
+							<input type = "hidden" th:field = "*{classRate2}" value = "0" th:if = "*{phantasmRange == '単体'}">
+							<div class="col-sm-4"  th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="classRate2">クラス相性2</label> <select
+									th:field="*{classRate2}">
+									<option value="2.0">2倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.5">0.5倍(不利)</option>
+									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+								</select>
+							</div>
+							<input type = "hidden" th:field = "*{classRate3}" value = "0" th:if = "*{phantasmRange == '単体'}">
+							<div class="col-sm-4" th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="classRate3">クラス相性3</label> <select
+									th:field="*{classRate3}">
+									<option value="2.0">2倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.5">0.5倍(不利)</option>
+									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4" th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="attributeRate1">属性相性1</label> <select
+									th:field="*{attributeRate1}">
+									<option value="1.1">1.1倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.9">0.9倍(不利)</option>
+								</select>
+							</div>
+							<div class="col-sm-4" th:if = "*{phantasmRange == '単体'}">
+								<label class="block" for="attributeRate1">属性相性</label> <select
+									th:field="*{attributeRate1}">
+									<option value="1.1">1.1倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.9">0.9倍(不利)</option>
+								</select>
+							</div>
+							<input type = "hidden" th:field = "*{attributeRate2}" value = "0" th:if = "*{phantasmRange == '単体'}">
+							<div class="col-sm-4" th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="attributeRate2">属性相性2</label> <select
+									th:field="*{attributeRate2}">
+									<option value="1.1">1.1倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.9">0.9倍(不利)</option>
+								</select>
+							</div>
+							<input type = "hidden" th:field = "*{attributeRate3}" value = "0" th:if = "*{phantasmRange == '単体'}">
+							<div class="col-sm-4" th:if = "*{phantasmRange != '単体'}">
+								<label class="block" for="attributeRate3">属性相性3</label> <select
+									th:field="*{attributeRate3}">
+									<option value="1.1">1.1倍(有利)</option>
+									<option value="1.0" selected>1倍(等倍)</option>
+									<option value="0.9">0.9倍(不利)</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<input type="submit" value="計算">
+						</div>
+					</form>
+				</div>
+				<div class="col-xl-2"></div>
+				<!-- 結果 -->
+				<div class="col-xl-4 border">
+					<h1>ダメージ量</h1>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-3">
+							<p>MAX</p>
+						</div>
+						<div class="col-sm-3">
+							<p>平均</p>
+						</div>
+						<div class="col-sm-3">
+							<p>MIN</p>
+						</div>
+					</div>
+					<div class="row" th:if = "${servantParameter.phantasmRange != '単体'}">
+						<div class="col-sm-3">
+							<p>敵1</p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer1Max}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer1}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer1Min}"></p>
+						</div>
+					</div>
+					<div class="row" th:if = "${servantParameter.phantasmRange != '単体'}">
+						<div class="col-sm-3">
+							<p>敵2</p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer2Max}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer2}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer2Min}"></p>
+						</div>
+					</div>
+					<div class="row"  th:if = "${servantParameter.phantasmRange != '単体'}">
+						<div class="col-sm-3">
+							<p>敵3</p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer3Max}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer3}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answer3Min}"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<p>TOTAL</p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answerMaxTotal}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answerTotal}"></p>
+						</div>
+						<div class="col-sm-3">
+							<p th:text="${answerMinTotal}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+</body>
+</html>
