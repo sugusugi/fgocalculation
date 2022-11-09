@@ -32,7 +32,7 @@ public class PhantasmDamageController {
     @RequestMapping("/phantasm")
     public String index(Model model) {
         ToolNameForm form = new ServantSearchForm();
-        form.setToolName("宝具ダメージ計算");
+        form.setToolName("宝具ダメージ");
         model.addAttribute("form",form);
         model.addAttribute("servantParameter", new PhantasmForm());
         return "calculator/phantasm";
