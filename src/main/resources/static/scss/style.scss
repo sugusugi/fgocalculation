@@ -1,3 +1,7 @@
+.row div {
+	margin-bottom: 10px;
+}
+
 .navbar{
 	justify-content: left;
 	padding-bottom: 0;
@@ -26,7 +30,7 @@
 }
 
 .navbar-light .navbar-toggler-icon {
-  background-image: url('/images/icons/navbar.png');
+	background-image: url('/images/icons/navbar.png');
 }
 
 .navbar-toggler:focus {
@@ -40,13 +44,19 @@
 	padding-bottom: 0.3125rem;
 }
 
-.container{
-	padding: 0;
-	margin: 0;
+.m-0{
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.important{
-	margin: 100px 20% 10px 20%;
+.home{
+	padding-right: 20%;
+	padding-left: 20%
+}
+
+.important {
+	margin-top: max(12vw,55px);
+	margin-bottom: 10px;
 }
 
 .block{
@@ -58,7 +68,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: linear-gradient(#05FBFF, #1E00FF);
 	color: #FFF;
 	text-decoration: none;
 	text-align: center;
@@ -79,23 +88,71 @@
 	margin: 0;
 }
 
+.bg-cyan-blue{
+	background: linear-gradient(#05FBFF, #1E00FF);
+}
+
+.font-cyan-blue{
+	color: linear-gradient(#05FBFF, #1E00FF);
+}
+
+.bg-blueRight{
+	background-color: #eaf4ff;
+}
+
+.border-bottom-only{
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+
+.item-name{
+	font-family: "ü‡ÉSÉVÉbÉN ñ{ï∂";
+	color: #000064;
+	font-weight: bolder;
+	margin-bottom: 5px;
+}
+
+.bg-translucent{
+	background-color: rgba(255,255,255,0.5);
+}
+
+.wmin-100-10rem{
+	width: min(100%,10rem);
+}
+.wmin-100-12rem{
+	width: min(100%,12rem);
+}
+
+.wmin-100-17rem{
+	width: min(100%,17rem);
+}
+
+.f-18px{
+	font-size: 18px;
+}
+
+.f-24px{
+	font-size: 24px;
+}
+
 footer{
 	position: absolute;
 	bottom: 0;
 }
 
+.pc {display: block !important; }
+.sp { display: none !important; }
+
 @media (max-width: 900px){
-	.important{
-		margin: 100px 10% 10px 10%;
-	}
+	.home{
+		padding-right: 10%;
+		padding-left: 10%
+}
 	.circlebtn{
 		font-size: 2vw;
 	}
 }
-
-.pc {display: block !important; }
-.sp { display: none !important; }
-
 
 @media (max-width: 750px) {
 	.pc { display: none !important; }
@@ -121,3 +178,140 @@ footer{
 	.navbar-brand{ display: none !important; }
 }
 
+.param-botton button{
+	background-color:white;
+}
+
+.param-botton button:hover{
+	color:white;
+	background-color:black;
+}
+
+/*ÉTÉìÉvÉã*/
+.answer-button button {
+	background: rgba(0,70,255,1);
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: min(90%, 150px);
+	padding: 0.5rem;
+	color: #FFF;
+	flex-direction: column;
+	border: solid 1px blue;
+	border-radius: 3rem;
+	font-size: 1.5rem;
+	font-family: "HGSënâpäp∫ﬁºØ∏UB";
+}
+.answer-button button span {
+	background: #FFFF00;
+	width: 80%;
+	text-align: center;
+	position: absolute;
+	top: -23px;
+	filter: drop-shadow(0px 1px 2px #aaa);
+	padding: 3px 0;
+	font-size: 1rem;
+	color: #2b7fde;
+	border-radius: 5px;
+	font-family: "ü‡ÉSÉVÉbÉN ñ{ï∂";
+	font-weight: 600;
+	transition: all .3s;
+}
+
+.answer-button button::after{
+	content: "";
+	position: absolute;
+	top:43%;
+	left: 15px;
+	transform: rotate(45deg);
+	width: 10px;
+	height: 10px;
+	border-top: solid 3px #ffffff;
+	border-right: solid 3px #ffffff;
+}
+
+.answer-button button span:after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border: 5px solid transparent;
+	border-top: 5px solid #ffffff;
+	transition: all .3s;
+}
+
+.answer-button button:hover {
+	transition: 0.3s ease-in-out;
+	background-color: white;
+	color:blue;
+	span{
+		color:transparent;
+		background-color: transparent;
+	}
+	span::after{
+		border: none;
+	}
+}
+
+.answer-button button:hover::after{
+	transition: all .3s;
+	left: 120px;
+	border-color: blue;
+}
+
+@for $i from 1 through 3{
+	.enemy-#{$i}{
+		.tabs {
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			width: 100%;
+			margin: 0 auto;
+		}
+		
+		.ans-tab{
+			width: calc(100%/3);
+			border-bottom: 3px solid #5ab4bd;
+			background-color: #d9d9d9;
+			text-align: center;
+			color: #565656;
+			display: block;
+			float: left;
+			text-align: center;
+			font-weight: bold;
+			transition: all 0.2s ease;
+		}
+		
+		.tab-content{
+			display: none;
+			font-size: 2rem;
+			clear: both;
+			overflow: hidden;
+		}
+		
+		input[type = "radio"]{
+			display: none;
+		}
+		
+		.ans{
+			display: flex;
+		}
+		
+		.ans-tab:hover{
+			background-color: #d9d9d9;
+			opacity: 0.75;
+		}
+		
+		#ans-max-#{$i}:checked ~ div .ans-max-content-#{$i},
+		#ans-#{$i}:checked ~ div .ans-content-#{$i},
+		#ans-min-#{$i}:checked ~ div .ans-min-content-#{$i}{
+			display: block;
+		}
+		
+		.tabs input:checked + .ans-tab{
+			background-color: #5ab4bd;
+			color: #fff;
+		}
+	}
+}

@@ -66,7 +66,7 @@ public class PhantasmDamageController {
         
         double[] phantasmRates = {servant.getPhantasmRateLv1(),servant.getPhantasmRateLv2(),servant.getPhantasmRateLv3(),servant.getPhantasmRateLv4(),servant.getPhantasmRateLv5()};
         int phantasmLv = servantParameter.getPhantasmLv();
-        double phantasmRate = 1 + phantasmRates[phantasmLv]/100;
+        double phantasmRate = 1 + phantasmRates[phantasmLv - 1]/100;
         
         CardType cardType = cardTypeRepository.findByCardTypeName(servant.getPhantasmCardType());
         double cardAtkRate = cardType.getAtkRate();
