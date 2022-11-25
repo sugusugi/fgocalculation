@@ -8,27 +8,30 @@
 			<div class="row m-0">
 				<div class="col square"></div>
 				<div class="col square">
-					<a href="#" class="circlebtn bg-cyan-blue">ログイン</a>
+					<a sec:authorize="!isAuthenticated()" href="/sessions/login" class="circlebtn bg-cyan-blue">ログイン</a>
+					<a sec:authorize="isAuthenticated()" href="/logout"
+						class="circlebtn bg-cyan-blue convert-post-method"
+						data-method="post" th:data-_csrf="${_csrf.token}">ログアウト</a>
 				</div>
 				<div class="col square"></div>
 				<div class="col square">
-					<a href="#" class="circlebtn bg-cyan-blue">新規</a>
+					<a sec:authorize = "!isAuthenticated()" href="/user/new" class="circlebtn bg-cyan-blue">新規</a>
 				</div>
 				<div class="col square"></div>
 			</div>
 			<div class="row m-0">
 				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="/phantasm">宝具ダメージ</a>
+					<a class="circlebtn bg-cyan-blue" href="calculator/phantasm">宝具ダメージ</a>
 				</div>
 				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="/phantasm">宝具<br>ダメージ</a>
+					<a class="circlebtn bg-cyan-blue" href="calculator/phantasm">宝具<br>ダメージ</a>
 				</div>
 				<div class="col square"></div>
 				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="/npGet">NP獲得量</a>
+					<a class="circlebtn bg-cyan-blue" href="calculator/npGet">NP獲得量</a>
 				</div>
 				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="/npGet">NP<br>獲得量</a>
+					<a class="circlebtn bg-cyan-blue" href="calculator/npGet">NP<br>獲得量</a>
 				</div>
 				<div class="col square"></div>
 				<div class="col square pc">

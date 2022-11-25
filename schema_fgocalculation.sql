@@ -62,4 +62,17 @@ FOREIGN KEY (classtype_name) references class_type_list(classtype_name),
 FOREIGN KEY (phantasm_card_type) references card_type_list(cardtype_name)
 );
 
+--ÉÜÅ[ÉUÅ[èÓïÒ
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE IF NOT EXISTS users (
+  user_id SERIAL NOT NULL,
+  authority VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
 GRANT ALL PRIVILEGES ON DATABASE fgocalculation TO fgomaster;

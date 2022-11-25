@@ -1,3 +1,4 @@
+@charset "utf-8";
 .row div {
 	margin-bottom: 10px;
 }
@@ -106,9 +107,8 @@ input[type = "radio"]{
 	padding-bottom: 0.3125rem;
 }
 
-.m-0{
-	margin-right: auto;
-	margin-left: auto;
+.error-message{
+	color:crimson;
 }
 
 .home{
@@ -117,7 +117,7 @@ input[type = "radio"]{
 }
 
 .important {
-	margin-top: max(12vw,55px);
+	margin-top: max(10vw,55px);
 	margin-bottom: 10px;
 }
 
@@ -168,11 +168,16 @@ input[type = "radio"]{
 	border-left: none;
 }
 
-.item-name{
-	font-family: "ŸàƒSƒVƒbƒN –{•¶";
+label.item-name{
+	font-family: "æ¸¸ã‚´ã‚·ãƒƒã‚¯ æœ¬æ–‡";
 	color: #000064;
 	font-weight: bolder;
 	margin-bottom: 5px;
+}
+
+p.item-name{
+	color: #000064;
+	font-weight: bolder;
 }
 
 .bg-translucent{
@@ -190,8 +195,17 @@ input[type = "radio"]{
 	width: min(100%,17rem);
 }
 
+.wmin-100-20rem{
+	width: min(100%,20rem);
+}
+
 .f-18px{
 	font-size: 18px;
+}
+
+.m-0{
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .f-24px{
@@ -262,7 +276,7 @@ footer{
 	border: solid 1px blue;
 	border-radius: 3rem;
 	font-size: 1.5rem;
-	font-family: "HGS‘n‰pŠpºÞ¼¯¸UB";
+	font-family: "HGSå‰µè‹±è§’ï½ºï¾žï½¼ï½¯ï½¸UB";
 }
 .answer-button button span {
 	background: #FFFF00;
@@ -275,7 +289,7 @@ footer{
 	font-size: 1rem;
 	color: #2b7fde;
 	border-radius: 5px;
-	font-family: "ŸàƒSƒVƒbƒN –{•¶";
+	font-family: "æ¸¸ã‚´ã‚·ãƒƒã‚¯ æœ¬æ–‡";
 	font-weight: 600;
 	transition: all .3s;
 }
@@ -321,4 +335,3 @@ footer{
 	left: 120px;
 	border-color: blue;
 }
-

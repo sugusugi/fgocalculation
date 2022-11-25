@@ -13,7 +13,7 @@
 					<div class="row">
 						<h1 class = "bg-cyan-blue text-white">パラメーター</h1>
 					</div>
-					<form action="/npGet/search" method="POST" th:object="${form}">
+					<form th:action="@{/npGet/search}" method="POST" th:object="${form}">
 						<input type="hidden" th:field=*{toolName}>
 						<div class="row">
 							<div class="col-sm-8">
@@ -27,7 +27,7 @@
 							</div>
 						</div>
 					</form>
-					<form action="/npGetCalculation" method="POST" th:object="${servantParameter}">
+					<form th:action="@{/calculation/npGet}" method="POST" th:object="${servantParameter}">
 						<input type="hidden" th:field=${form.toolName}>
 						<input type="hidden" th:field="*{servantName}">
 						<th:object th:object="${overKillHitForm}">
@@ -77,7 +77,6 @@
 							<div class="col-sm-4">
 								<label class="block item-name" for="enemyClass1">敵クラス1</label>
 								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" name="enemyClass1" th:field="*{enemyClass1}">
-									<option value="">選択してください</option>
 									<option value="セイバー">セイバー</option>
 									<option value="アーチャー">アーチャー</option>
 									<option value="ランサー">ランサー</option>
@@ -150,7 +149,7 @@
 					<div class="row">
 						<h1 class="bg-cyan-blue text-white">オーバーキルHIT数自動算出</h1>
 					</div>
-					<form action="/overKillCalculation" method="POST" th:object="${overKillHitForm}">
+					<form th:action="@{/calculation/overKill}" method="POST" th:object="${overKillHitForm}">
 						<div class="row">
 							<input type="hidden" th:field=${form.toolName}>
 							<th:block th:object="${servantParameter}">
