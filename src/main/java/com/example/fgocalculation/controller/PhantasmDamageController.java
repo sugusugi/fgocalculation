@@ -83,19 +83,17 @@ public class PhantasmDamageController {
         double attributeRate2 = servantParameter.getAttributeRate2();
         double attributeRate3 = servantParameter.getAttributeRate3();
         
-        ConsoleOutput.checkValue("�U���͂�",atk + fou + spiritual);
-        ConsoleOutput.checkValue("���{��",phantasmRate);
-        ConsoleOutput.checkValue("���萔", 0.23);
-        ConsoleOutput.checkValue("�J�[�h�U���␳",cardAtkRate);
-        ConsoleOutput.checkValue("�N���X�U���␳",classAtkRate);
-        ConsoleOutput.checkValue("�U���̓o�t��:",atkBuf);
-        ConsoleOutput.checkValue("�J�[�h�o�t",cardBuf);
-        ConsoleOutput.checkValue("����o�t",phantasmBuf + specialBuf);
-        ConsoleOutput.checkValue("�����U",phantasmSpecial);
-        ConsoleOutput.checkValue("�N���X����",classRate1);
-        ConsoleOutput.checkValue("��������",attributeRate1);
-
-
+        ConsoleOutput.checkValue("攻撃力は",atk + fou + spiritual);
+        ConsoleOutput.checkValue("宝具倍率",phantasmRate);
+        ConsoleOutput.checkValue("宝具定数", 0.23);
+        ConsoleOutput.checkValue("カード攻撃補正",cardAtkRate);
+        ConsoleOutput.checkValue("クラス攻撃補正",classAtkRate);
+        ConsoleOutput.checkValue("攻撃力バフは:",atkBuf);
+        ConsoleOutput.checkValue("カードバフ",cardBuf);
+        ConsoleOutput.checkValue("特殊バフ",phantasmBuf + specialBuf);
+        ConsoleOutput.checkValue("宝具特攻",phantasmSpecial);
+        ConsoleOutput.checkValue("クラス相性",classRate1);
+        ConsoleOutput.checkValue("属性相性",attributeRate1);
         
         answer = (atk + fou + spiritual) * 0.23 * classAtkRate * phantasmRate * (cardAtkRate * cardBuf) * atkBuf * (phantasmBuf + specialBuf) * phantasmSpecial;
         double answer1 = answer * classRate1 * attributeRate1;
@@ -112,15 +110,17 @@ public class PhantasmDamageController {
         double answerMaxTotal = answer1Max +answer2Max + answer3Max;
         double answerTotal = answer1 + answer2 + answer3;
         double answerMinTotal = answer1Min +answer2Min + answer3Min;
-        ConsoleOutput.checkValue("���_���[�W1�@MAX",answer1Max);
-        ConsoleOutput.checkValue("���_���[�W1�@����",answer1);
-        ConsoleOutput.checkValue("���_���[�W1�@MIN",answer1Min);
-        ConsoleOutput.checkValue("���_���[�W2�@MAX",answer2Max);
-        ConsoleOutput.checkValue("���_���[�W2�@����",answer2);
-        ConsoleOutput.checkValue("���_���[�W2�@MIN",answer2Min);
-        ConsoleOutput.checkValue("���_���[�W3�@MAX",answer3Max);
-        ConsoleOutput.checkValue("���_���[�W3�@����",answer3);
-        ConsoleOutput.checkValue("���_���[�W3�@MIN",answer3Min);
+        
+        ConsoleOutput.checkValue("宝具ダメージ1　MAX",answer1Max);
+        ConsoleOutput.checkValue("宝具ダメージ1　平均",answer1);
+        ConsoleOutput.checkValue("宝具ダメージ1　MIN",answer1Min);
+        ConsoleOutput.checkValue("宝具ダメージ2　MAX",answer2Max);
+        ConsoleOutput.checkValue("宝具ダメージ2　平均",answer2);
+        ConsoleOutput.checkValue("宝具ダメージ2　MIN",answer2Min);
+        ConsoleOutput.checkValue("宝具ダメージ3　MAX",answer3Max);
+        ConsoleOutput.checkValue("宝具ダメージ3　平均",answer3);
+        ConsoleOutput.checkValue("宝具ダメージ3　MIN",answer3Min);
+        
         model.addAttribute("answer1Max",Math.round(Math.floor(answer1Max)));
         model.addAttribute("answer1",Math.round(Math.floor(answer1)));
         model.addAttribute("answer1Min",Math.round(Math.floor(answer1Min)));
