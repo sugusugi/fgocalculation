@@ -20,5 +20,9 @@
 	<div class = "important" layout:fragment="contents"></div>
 	<nav layout:replace="~{layouts/common::nav}"></nav>
 	<footer layout:replace="~{layouts/common::footer}"></footer>
+	<script src="/scripts/convert-post-method.js" th:src="@{/scripts/convert-post-method.js}"></script>
+	<script>
+		convertPostMethod('.convert-post-method');
+	</script>
 </body>
 </html>

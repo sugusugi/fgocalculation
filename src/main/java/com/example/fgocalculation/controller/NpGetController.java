@@ -33,7 +33,7 @@ public class NpGetController {
     @Autowired
     ClassTypeRepository classTypeRepository;
 
-    @RequestMapping("/npGet")
+    @RequestMapping("/calculator/npGet")
     public String index(Model model) {
         ToolNameForm form = new ServantSearchForm();
         form.setToolName("NP計算");
@@ -43,7 +43,7 @@ public class NpGetController {
         return "calculator/npGet";
     }
 
-    @RequestMapping(value = "/npGetCalculation", method = RequestMethod.POST)
+    @RequestMapping(value = "/calculation/npGet", method = RequestMethod.POST)
     public String npGetCalculation(
             @ModelAttribute("servantParameter") NpGetForm servantParameter,
             @ModelAttribute("form") ServantSearchForm form,
@@ -87,7 +87,7 @@ public class NpGetController {
         return "calculator/npGet";
     }
 
-    @RequestMapping(value = "/overKillCalculation", method = RequestMethod.POST)
+    @RequestMapping(value = "/calculation/overKill", method = RequestMethod.POST)
     public String overKillCalculation(
             @ModelAttribute("servantParameter") NpGetForm servantParameter,
             @ModelAttribute("form") ServantSearchForm form,

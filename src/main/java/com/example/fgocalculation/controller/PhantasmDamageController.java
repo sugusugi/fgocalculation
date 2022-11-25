@@ -3,6 +3,7 @@ package com.example.fgocalculation.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -29,17 +30,17 @@ public class PhantasmDamageController {
     @Autowired
     ClassTypeRepository classTypeRepository;
     
-    @RequestMapping("/phantasm")
+    @RequestMapping("/calculator/phantasm")
     public String index(Model model) {
         ToolNameForm form = new ServantSearchForm();
-        form.setToolName("•ó‹ïƒ_ƒ[ƒW");
+        form.setToolName("å®å…·ãƒ€ãƒ¡ãƒ¼ã‚¸");
         model.addAttribute("form",form);
         model.addAttribute("servantParameter", new PhantasmForm());
         return "calculator/phantasm";
     }
     
     
-    @RequestMapping("/phantasmCalculation")
+    @RequestMapping(value = "/calculation/phantasm", method = RequestMethod.POST)
     public String calculation(@ModelAttribute("servantParameter") PhantasmForm servantParameter, @ModelAttribute("form") ServantSearchForm form,Model model) {
         model.addAttribute("servantParameter",servantParameter);
         model.addAttribute("form",form);
@@ -82,17 +83,17 @@ public class PhantasmDamageController {
         double attributeRate2 = servantParameter.getAttributeRate2();
         double attributeRate3 = servantParameter.getAttributeRate3();
         
-        ConsoleOutput.checkValue("UŒ‚—Í‚Í",atk + fou + spiritual);
-        ConsoleOutput.checkValue("•ó‹ï”{—¦",phantasmRate);
-        ConsoleOutput.checkValue("•ó‹ï’è”", 0.23);
-        ConsoleOutput.checkValue("ƒJ[ƒhUŒ‚•â³",cardAtkRate);
-        ConsoleOutput.checkValue("ƒNƒ‰ƒXUŒ‚•â³",classAtkRate);
-        ConsoleOutput.checkValue("UŒ‚—Íƒoƒt‚Í:",atkBuf);
-        ConsoleOutput.checkValue("ƒJ[ƒhƒoƒt",cardBuf);
-        ConsoleOutput.checkValue("“Áêƒoƒt",phantasmBuf + specialBuf);
-        ConsoleOutput.checkValue("•ó‹ï“ÁU",phantasmSpecial);
-        ConsoleOutput.checkValue("ƒNƒ‰ƒX‘Š«",classRate1);
-        ConsoleOutput.checkValue("‘®«‘Š«",attributeRate1);
+        ConsoleOutput.checkValue("ï¿½Uï¿½ï¿½ï¿½Í‚ï¿½",atk + fou + spiritual);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½{ï¿½ï¿½",phantasmRate);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½è”", 0.23);
+        ConsoleOutput.checkValue("ï¿½Jï¿½[ï¿½hï¿½Uï¿½ï¿½ï¿½â³",cardAtkRate);
+        ConsoleOutput.checkValue("ï¿½Nï¿½ï¿½ï¿½Xï¿½Uï¿½ï¿½ï¿½â³",classAtkRate);
+        ConsoleOutput.checkValue("ï¿½Uï¿½ï¿½ï¿½Íƒoï¿½tï¿½ï¿½:",atkBuf);
+        ConsoleOutput.checkValue("ï¿½Jï¿½[ï¿½hï¿½oï¿½t",cardBuf);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½ï¿½oï¿½t",phantasmBuf + specialBuf);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½ï¿½ï¿½U",phantasmSpecial);
+        ConsoleOutput.checkValue("ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½",classRate1);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",attributeRate1);
 
 
         
@@ -111,15 +112,15 @@ public class PhantasmDamageController {
         double answerMaxTotal = answer1Max +answer2Max + answer3Max;
         double answerTotal = answer1 + answer2 + answer3;
         double answerMinTotal = answer1Min +answer2Min + answer3Min;
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW1@MAX",answer1Max);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW1@•½‹Ï",answer1);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW1@MIN",answer1Min);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW2@MAX",answer2Max);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW2@•½‹Ï",answer2);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW2@MIN",answer2Min);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW3@MAX",answer3Max);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW3@•½‹Ï",answer3);
-        ConsoleOutput.checkValue("•ó‹ïƒ_ƒ[ƒW3@MIN",answer3Min);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W1ï¿½@MAX",answer1Max);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W1ï¿½@ï¿½ï¿½ï¿½ï¿½",answer1);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W1ï¿½@MIN",answer1Min);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W2ï¿½@MAX",answer2Max);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W2ï¿½@ï¿½ï¿½ï¿½ï¿½",answer2);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W2ï¿½@MIN",answer2Min);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W3ï¿½@MAX",answer3Max);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W3ï¿½@ï¿½ï¿½ï¿½ï¿½",answer3);
+        ConsoleOutput.checkValue("ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½W3ï¿½@MIN",answer3Min);
         model.addAttribute("answer1Max",Math.round(Math.floor(answer1Max)));
         model.addAttribute("answer1",Math.round(Math.floor(answer1)));
         model.addAttribute("answer1Min",Math.round(Math.floor(answer1Min)));

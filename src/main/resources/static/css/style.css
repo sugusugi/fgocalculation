@@ -105,16 +105,15 @@ input[type="radio"] {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem; }
 
-.m-0 {
-  margin-right: auto;
-  margin-left: auto; }
+.error-message {
+  color: crimson; }
 
 .home {
   padding-right: 20%;
   padding-left: 20%; }
 
 .important {
-  margin-top: max(12vw, 55px);
+  margin-top: max(10vw, 55px);
   margin-bottom: 10px; }
 
 .block {
@@ -156,11 +155,15 @@ input[type="radio"] {
   border-right: none;
   border-left: none; }
 
-.item-name {
+label.item-name {
   font-family: "游ゴシック 本文";
   color: #000064;
   font-weight: bolder;
   margin-bottom: 5px; }
+
+p.item-name {
+  color: #000064;
+  font-weight: bolder; }
 
 .bg-translucent {
   background-color: rgba(255, 255, 255, 0.5); }
@@ -174,8 +177,15 @@ input[type="radio"] {
 .wmin-100-17rem {
   width: min(100%, 17rem); }
 
+.wmin-100-20rem {
+  width: min(100%, 20rem); }
+
 .f-18px {
   font-size: 18px; }
+
+.m-0 {
+  margin-right: auto;
+  margin-left: auto; }
 
 .f-24px {
   font-size: 24px; }
