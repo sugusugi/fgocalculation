@@ -23,9 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected static Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    private UserRepository repository;
-
-    @Autowired
     UserDetailsService service;
 
     @Autowired

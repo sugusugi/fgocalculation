@@ -9,9 +9,7 @@
 				<div class="col square"></div>
 				<div class="col square">
 					<a sec:authorize="!isAuthenticated()" href="/sessions/login" class="circlebtn bg-cyan-blue">ログイン</a>
-					<a sec:authorize="isAuthenticated()" href="/logout"
-						class="circlebtn bg-cyan-blue convert-post-method"
-						data-method="post" th:data-_csrf="${_csrf.token}">ログアウト</a>
+					<a sec:authorize = "isAuthenticated()" href="/mypages" class="circlebtn bg-cyan-blue">マイページ</a>
 				</div>
 				<div class="col square"></div>
 				<div class="col square">

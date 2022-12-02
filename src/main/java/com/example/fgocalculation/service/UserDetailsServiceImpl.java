@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.fgocalculation.entity.User;
+import com.example.fgocalculation.entity.UserEntity;
 import com.example.fgocalculation.repository.UserRepository;
 
 @Service
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (email == null || "".equals(email)) {
             throw new UsernameNotFoundException("e-mail is empty");
         }
-        User entity = repository.findByEmail(email);
+        UserEntity entity = repository.findByEmail(email);
 
         return entity;
     }

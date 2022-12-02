@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<body>
+<div layout:fragment="contents">
+	<div class="container">
+		<div class="row justify-content-center mx-auto">
+			<div class="col-md-4 border bg-blueRight">
+				<div class="row">
+					<h1 class = "bg-cyan-blue text-white">アカウント情報</h1>
+				</div>
+				<!-- リンクの端に小なりとホバー時に色を薄めのシアン -->
+					<table class="table table-br bg-white">
+						<tr>
+							<td class = "p-0"><a class = "account-botton" href="/mypages/editName"><div class = "m-0"><span class = "item-name">ユーザー名</span><br><span class = "item-value" th:text = "${user.name}"></span></div></a></td>
+						</tr>
+						<tr>
+						<td class = "p-0"><a class = "account-botton" href="/mypages/editEmail"><div class = "m-0"><span class = "item-name">メールアドレス</span><br><span class = "item-value" th:text = "${user.email}"></span></div></a></td>
+						</tr>
+						<tr>
+							<td class = "p-0"><a class = "account-botton" href="/mypages/editPassword"><div class = "m-0"><span class = "item-name">パスワード</span><br><span class = "item-value">********</span></div></a></td>
+						</tr>
+					</table>
+					<div class = "bg-white">
+						<a class = "account-botton" href="/mypages/delete"><div class = "m-0"><span class = "text-danger">アカウント削除</span></div></a>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

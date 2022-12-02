@@ -5,7 +5,9 @@ import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class PasswordHasher {
     
     public String hasher(String password){
