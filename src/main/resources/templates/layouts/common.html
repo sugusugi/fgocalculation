@@ -17,14 +17,17 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li sec:authorize = "!isAuthenticated()" class="nav-item"><a class="nav-link" href="/sessions/login">ログイン</a></li>
-				<li sec:authorize = "isAuthenticated()" class="nav-item"><a class="nav-link convert-post-method" href="/logout" data-method="post" th:data-_csrf="${_csrf.token}">ログアウト</a></li>
 				<li sec:authorize = "!isAuthenticated()" class="nav-item"><a class="nav-link" href="/user/new">新規</a></li>
+				<li sec:authorize = "isAuthenticated()" class="nav-item"><a class="nav-link" href="/mypages">マイページ</a></li>
 				<li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
 				<li class="nav-item"><a class="nav-link" href="/calculator/phantasm">宝具ダメージ</a></li>
 				<li class="nav-item"><a class="nav-link" href="/calculator/npGet">NP獲得量</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">通常攻撃ダメージ</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">スター獲得量</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">霊基一覧</a></li>
+				<li sec:authorize="isAuthenticated()" class="nav-item"><a
+					class="nav-link convert-post-method" href="/logout"
+					data-method="post" th:data-_csrf="${_csrf.token}">ログアウト</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">利用規約</a></li>
 			</ul>
 		</div>

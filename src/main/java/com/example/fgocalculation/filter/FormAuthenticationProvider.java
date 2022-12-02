@@ -10,7 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-import com.example.fgocalculation.entity.User;
+import com.example.fgocalculation.entity.UserEntity;
 import com.example.fgocalculation.repository.UserRepository;
 import com.example.fgocalculation.encoder.PasswordHasher;
 
@@ -34,7 +34,7 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
             throw new AuthenticationCredentialsNotFoundException("ログイン情報に不備があります。");
         }
 
-        User entity = repository.findByEmail(name);
+        UserEntity entity = repository.findByEmail(name);
         if (entity == null) {
             throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
         }

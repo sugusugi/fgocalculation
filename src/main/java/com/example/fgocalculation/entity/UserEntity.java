@@ -23,18 +23,18 @@ import lombok.Data;
 @Entity
 @Table(name = "users")
 @Data
-public class User extends AbstractEntity implements UserDetails{
+public class UserEntity extends AbstractEntity implements UserDetails{
     private static final long serialVersionUID = 1L;
 
     public enum Authority {
         ROLE_USER, ROLE_ADMIN
     };
 
-    public User() {
+    public UserEntity() {
         super();
     }
 
-    public User(String name, String email, String password, Authority authority) {
+    public UserEntity(String name, String email, String password, Authority authority) {
         this.name = name;
         this.email = email;
         this.password = password;

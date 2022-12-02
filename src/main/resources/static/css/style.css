@@ -1,4 +1,10 @@
 @charset "UTF-8";
+a {
+  text-decoration: none; }
+
+h1 {
+  font-size: calc(1.1rem + 1.5vw); }
+
 .row div {
   margin-bottom: 10px; }
 
@@ -125,7 +131,6 @@ input[type="radio"] {
   justify-content: center;
   align-items: center;
   color: #FFF;
-  text-decoration: none;
   text-align: center;
   width: 90%;
   height: 90%;
@@ -155,16 +160,6 @@ input[type="radio"] {
   border-right: none;
   border-left: none; }
 
-label.item-name {
-  font-family: "游ゴシック 本文";
-  color: #000064;
-  font-weight: bolder;
-  margin-bottom: 5px; }
-
-p.item-name {
-  color: #000064;
-  font-weight: bolder; }
-
 .bg-translucent {
   background-color: rgba(255, 255, 255, 0.5); }
 
@@ -180,19 +175,35 @@ p.item-name {
 .wmin-100-20rem {
   width: min(100%, 20rem); }
 
-.f-18px {
-  font-size: 18px; }
-
 .m-0 {
   margin-right: auto;
   margin-left: auto; }
 
+.f-18px {
+  font-size: 18px; }
+
 .f-24px {
   font-size: 24px; }
+
+.table-br {
+  width: 100%;
+  table-layout: fixed;
+  word-break: break-all;
+  word-wrap: break-all; }
 
 footer {
   position: absolute;
   bottom: 0; }
+
+label.item-name {
+  font-family: "游ゴシック 本文";
+  color: #000064;
+  font-weight: bolder;
+  margin-bottom: 5px; }
+
+p.item-name {
+  color: #000064;
+  font-weight: bolder; }
 
 .pc {
   display: block !important; }
@@ -244,7 +255,7 @@ footer {
   flex-direction: column;
   border: solid 1px blue;
   border-radius: 3rem;
-  font-size: 1.5rem;
+  font-size: calc(1rem + 0.5vw);
   font-family: "HGS創英角ｺﾞｼｯｸUB"; }
 
 .answer-button button span {
@@ -255,7 +266,7 @@ footer {
   top: -23px;
   filter: drop-shadow(0px 1px 2px #aaa);
   padding: 3px 0;
-  font-size: 1rem;
+  font-size: calc(0.7rem + 0.2vw);
   color: #2b7fde;
   border-radius: 5px;
   font-family: "游ゴシック 本文";
@@ -297,5 +308,33 @@ footer {
   transition: all .3s;
   left: 120px;
   border-color: blue; }
+
+.account-botton {
+  position: relative; }
+  .account-botton div {
+    padding: 5px; }
+    .account-botton div span {
+      font-size: calc(0.6rem + 0.5vw); }
+      .account-botton div span.item-name {
+        color: black; }
+      .account-botton div span.item-value {
+        display: block;
+        width: 80%;
+        color: #969696; }
+    .account-botton div:hover {
+      background-color: #a0ffff; }
+    .account-botton div::after {
+      content: "";
+      position: absolute;
+      top: 40%;
+      right: 15px;
+      transform: rotate(45deg);
+      width: 10px;
+      height: 10px;
+      border-top: solid 2px #646464;
+      border-right: solid 2px #646464; }
+
+.delete-message {
+  font-size: calc(0.8rem + 0.5vw); }
 
 /*# sourceMappingURL=style.css.map */

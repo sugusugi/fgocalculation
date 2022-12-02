@@ -1,5 +1,5 @@
 
-----クラス情報
+----繧ｯ繝ｩ繧ｹ諠�蝣ｱ
 DROP TABLE IF EXISTS class_type_list CASCADE;
 
 CREATE TABLE IF NOT EXISTS class_type_list(
@@ -10,7 +10,7 @@ enemy_np_rate_special NUMERIC NOT NULL,
 PRIMARY KEY (classtype_name)
 );
 
---カード情報
+--繧ｫ繝ｼ繝画ュ蝣ｱ
 DROP TABLE IF EXISTS card_type_list CASCADE;
 
 CREATE TABLE IF NOT EXISTS card_type_list(
@@ -20,7 +20,7 @@ np_rate NUMERIC NOT NULL,
 PRIMARY KEY (cardtype_name)
 );
 
---サーバント情報
+--繧ｵ繝ｼ繝舌Φ繝域ュ蝣ｱ
 DROP TABLE IF EXISTS servant_list CASCADE;
 
 CREATE TABLE IF NOT EXISTS servant_list(
@@ -62,7 +62,7 @@ FOREIGN KEY (classtype_name) references class_type_list(classtype_name),
 FOREIGN KEY (phantasm_card_type) references card_type_list(cardtype_name)
 );
 
---ユーザー情報
+--繝ｦ繝ｼ繧ｶ繝ｼ諠�蝣ｱ
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL NOT NULL,

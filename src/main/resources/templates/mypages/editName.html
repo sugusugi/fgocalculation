@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>ユーザー名の変更～鬼周回への道～</title>
+</head>
+<body>
+<div layout:fragment="contents">
+		<div class="container">
+			<div class="row justify-content-center mx-auto">
+				<div class="col-lg-4 border bg-blueRight">
+					<div class="row">
+						<h1 class="bg-cyan-blue text-white">ユーザー名の変更</h1>
+					</div>
+					<form th:action="@{/mypages/editName}" method="POST" th:object = "${userNameForm}">
+						<div class="wmin-100-20rem mx-auto mb-3">
+							<label class="block item-name" for="name">ユーザー名</label>
+							<span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+							<input class="w-100 border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px"
+								type="text" th:field=*{name} placeholder="1文字~20文字">
+						</div>
+						<div class="text-center">
+							<div class="answer-button mt-5">
+								<button class="mt-4 mb-2 mx-auto" type="submit"> <span>変更</span>PUSH</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
