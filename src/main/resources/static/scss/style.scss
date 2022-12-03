@@ -7,6 +7,18 @@ a{
 h1 {
 	font-size: calc(1.1rem + 1.5vw);
 }
+footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #eaf4ff;
+	box-shadow: 0 10px 25px 0 rgba(0,0,0,0.5);
+	div{
+		margin: 0.3% 0;
+		font-size: calc(0.5rem + 0.7vw);
+	}
+}
 
 .row div {
 	margin-bottom: 10px;
@@ -217,10 +229,6 @@ input[type = "radio"]{
 	word-wrap: break-all;
 }
 
-footer{
-	position: absolute;
-	bottom: 0;
-}
 
 label.item-name{
 	font-family: "游ゴシック 本文";
