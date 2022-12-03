@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +16,7 @@ import java.util.List;
 import com.example.fgocalculation.repository.CardTypeRepository;
 import com.example.fgocalculation.repository.ClassTypeRepository;
 import com.example.fgocalculation.repository.ServantListRepository;
-import com.example.fgocalculation.entity.ClassType;
+import com.example.fgocalculation.versatile.CalculationSub;
 import com.example.fgocalculation.entity.ServantList;
 import com.example.fgocalculation.form.ToolNameForm;
 import com.example.fgocalculation.form.ServantSearchForm;
@@ -33,6 +35,9 @@ public class NpGetController {
     @Autowired
     ClassTypeRepository classTypeRepository;
 
+    @Autowired
+    CalculationSub sub;
+
     @RequestMapping("/calculator/npGet")
     public String index(Model model) {
         ToolNameForm form = new ServantSearchForm();
@@ -44,22 +49,47 @@ public class NpGetController {
     }
 
     @RequestMapping(value = "/calculation/npGet", method = RequestMethod.POST)
-    public String npGetCalculation(
-            @ModelAttribute("servantParameter") NpGetForm servantParameter,
-            @ModelAttribute("form") ServantSearchForm form,
-            @ModelAttribute("overKillHitForm") OverKillHitForm overKillHitForm,
-            Model model) {
+    public String npGetCalculation(@Validated @ModelAttribute("servantParameter") NpGetForm servantParameter,
+            BindingResult bindingResult, @ModelAttribute("form") ServantSearchForm form,
+            @ModelAttribute("overKillHitForm") OverKillHitForm overKillHitForm, Model model) {
         model.addAttribute("servantParameter", servantParameter);
         model.addAttribute("form", form);
         model.addAttribute("overKillHitForm", overKillHitForm);
+        model.addAttribute("servantParameter", servantParameter);
+
         ServantList servant = repository.findByServantName(servantParameter.getServantName());
+        if (servant == null) {
+            model.addAttribute("servantNot", true);
+            model.addAttribute("servantNotMessage", "サーバントを検索してください。");
+            return "calculator/npGet";
+        }
+        if (bindingResult.hasErrors()) {
+            return "calculator/npGet";
+        }
 
         double npRateAttack = servant.getNpRateAttack();
         double cardNpRate = cardTypeRepository.findByCardTypeName(servant.getPhantasmCardType()).getNpRate();
-        double cardBuf = servantParameter.getCardBuf() / 100;
-        double npGetBuf = servantParameter.getNpGetBuf() / 100;
+        double cardBuf = sub.nullToZero(servantParameter.getCardBuf()) / 100;
+        double npGetBuf = sub.nullToZero(servantParameter.getNpGetBuf()) / 100;
         double hit = servantParameter.getHit();
-        double overKillHit = servantParameter.getOverKillHit();
+        double overKillHit = sub.nullToZero(servantParameter.getOverKillHit());
+        boolean overKillHitError = true;
+        switch (servant.getPhantasmRange()) {
+        case "単体":
+            overKillHitError = hit < overKillHit;
+            break;
+        case "全体":
+            overKillHitError = hit * 3 < overKillHit;
+            break;
+        }
+        if (overKillHitError) {
+            FieldError fieldError = new FieldError(bindingResult.getObjectName(), "overKillHit", "総HIT数より多いです。");
+            bindingResult.addError(fieldError);
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "calculator/npGet";
+        }
 
         double enemyNpRate1 = 0;
         double enemyNpRate2 = 0;
@@ -88,13 +118,20 @@ public class NpGetController {
     }
 
     @RequestMapping(value = "/calculation/overKill", method = RequestMethod.POST)
-    public String overKillCalculation(
-            @ModelAttribute("servantParameter") NpGetForm servantParameter,
+    public String overKillCalculation(@ModelAttribute("servantParameter") NpGetForm servantParameter,
             @ModelAttribute("form") ServantSearchForm form,
-            @ModelAttribute("overKillHitForm") OverKillHitForm overKillHitForm, Model model) {
+            @Validated @ModelAttribute("overKillHitForm") OverKillHitForm overKillHitForm, BindingResult bindingResult,
+            Model model) {
+
         model.addAttribute("form", form);
         model.addAttribute("overKillHitForm", overKillHitForm);
+
         ServantList servant = repository.findByServantName(servantParameter.getServantName());
+        if (servant == null) {
+            model.addAttribute("servantNot", true);
+            model.addAttribute("servantNotMessage", "サーバントを検索してください。");
+            return "calculator/npGet";
+        }
         List<Integer> phantasmRateHits = new ArrayList<>();
         phantasmRateHits.add(servant.getPhantasmRateFirstHit());
         phantasmRateHits.add(servant.getPhantasmRateSecondHit());
@@ -118,9 +155,9 @@ public class NpGetController {
         }
 
         int overKillHit = 0;
-        double damage1 = overKillHitForm.getDamage1();
+        double damage1 = sub.nullToZero(overKillHitForm.getDamage1());
         if (damage1 != 0) {
-            double enemyHp1 = overKillHitForm.getEnemyHp1();
+            double enemyHp1 = sub.nullToZero(overKillHitForm.getEnemyHp1());
             double hitDamage1 = 0;
             for (int phantasmRateHit : phantasmRateHits) {
                 if (phantasmRateHit == 0) {
@@ -132,9 +169,9 @@ public class NpGetController {
                 }
             }
         }
-        double damage2 = overKillHitForm.getDamage2();
+        double damage2 = sub.nullToZero(overKillHitForm.getDamage2());
         if (damage2 != 0) {
-            double enemyHp2 = overKillHitForm.getEnemyHp2();
+            double enemyHp2 = sub.nullToZero(overKillHitForm.getEnemyHp2());
             double hitDamage2 = 0;
             for (int phantasmRateHit : phantasmRateHits) {
                 if (phantasmRateHit == 0) {
@@ -146,9 +183,9 @@ public class NpGetController {
                 }
             }
         }
-        double damage3 = overKillHitForm.getDamage3();
+        double damage3 = sub.nullToZero(overKillHitForm.getDamage3());
         if (damage3 != 0) {
-            double enemyHp3 = overKillHitForm.getEnemyHp3();
+            double enemyHp3 = sub.nullToZero(overKillHitForm.getEnemyHp3());
             double hitDamage3 = 0;
             for (int phantasmRateHit : phantasmRateHits) {
                 if (phantasmRateHit == 0) {

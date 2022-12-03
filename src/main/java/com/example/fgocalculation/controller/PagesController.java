@@ -8,12 +8,12 @@ import com.example.fgocalculation.form.ToolNameForm;
 
 @Controller
 public class PagesController {
-    
+
     @RequestMapping("/")
     public String index(Model model) {
         ToolNameForm form = new ToolNameForm();
         form.setToolName("ホーム");
-        model.addAttribute("form",form);
+        model.addAttribute("form", form);
         return "pages/index";
     }
 }

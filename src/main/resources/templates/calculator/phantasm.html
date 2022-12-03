@@ -20,9 +20,9 @@
 							<div class="col-md-6 col-sm-6">
 								<label class="block item-name" for="servantName">サーバント名</label>
 								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px" type="text" th:field="*{servantName}">
-								<p th:text="${errorMessage}"></p>
+								<br><span class="error-message" th:if="${#fields.hasErrors('servantName')}" th:errors="*{servantName}"></span>
 							</div>
-							<div class="col-md-4 col-sm-4">
+							<div class="col-md-3 col-sm-3">
 								<label class="block item-name" for="level">Lv</label>
 								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{level}">
 									<option value="atk">MAX</option>
@@ -30,8 +30,13 @@
 									<option value="atkLv120">120</option>
 								</select>
 							</div>
-							<div class="col-md-2 col-sm-2 d-flex align-items-center param-botton ">
-								<button class = "rounded-pill wmin-100-10rem" type="submit">検索</button>
+							<div class="col-md-3 col-sm-3 text-center">
+								<div class="answer-button">
+									<button class="rounded-pill wmin-100-10rem mx-auto" type="submit">検索</button>
+								</div>
+								<th:block th:if="${servantNot}">
+									<p class = "error-message m-0" th:text="${servantNotMessage}"></p>
+								</th:block>
 							</div>
 						</div>
 					</form>
@@ -44,14 +49,17 @@
 							<div class="col-md-4 col-sm-4">
 								<label class="block item-name" for="atk">ATK</label>
 								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{atk}">
+								<br><span class="error-message" th:if="${#fields.hasErrors('atk')}" th:errors="*{atk}"></span>
 							</div>
 							<div class="col-md-4 col-sm-4">
 								<label class="block item-name" for="fou">フォウ</label>
 								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{fou}">
+								<br><span class="error-message" th:if="${#fields.hasErrors('fou')}" th:errors="*{fou}"></span>
 							</div>
 							<div class="col-md-4 col-sm-4">
 								<label class="block item-name" for="spiritual">礼装</label>
 								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{spiritual}">
+								<br><span class="error-message" th:if="${#fields.hasErrors('spiritual')}" th:errors="*{spiritual}"></span>
 							</div>
 						</div>
 						<div class="row mb-3">
@@ -101,6 +109,7 @@
 							<div class="col-sm-4">
 								<label class="block item-name" for="phantasmSpecial">宝具特攻</label>
 								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{phantasmSpecial}">
+								<br><span class="error-message" th:if="${#fields.hasErrors('phantasmSpecial')}" th:errors="*{phantasmSpecial}"></span>
 							</div>
 						</div>
 						<div class="row mb-3">
