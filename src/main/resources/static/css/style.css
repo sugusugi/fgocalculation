@@ -277,7 +277,7 @@ p.item-name {
   content: "";
   position: absolute;
   top: 43%;
-  left: 15px;
+  left: 10%;
   transform: rotate(45deg);
   width: 10px;
   height: 10px;
@@ -306,7 +306,7 @@ p.item-name {
 
 .answer-button button:hover::after {
   transition: all .3s;
-  left: 120px;
+  left: 80%;
   border-color: blue; }
 
 .account-botton {

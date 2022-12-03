@@ -1,6 +1,8 @@
 package com.example.fgocalculation.form;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -14,13 +16,17 @@ public class PhantasmForm{
     public String classTypeName;
     
     /** 攻撃力*/
-    private double atk;
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Double atk = 0.0;
     
     /** フォウ*/
-    private double fou;
+    @Min(value = 0, message = "0以上を入力してください。")
+    @Max(2000)
+    private Double fou = 0.0;
     
     /** 礼装*/
-    private double spiritual;
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Double spiritual = 0.0;
     
     /** 宝具レベル*/
     private int phantasmLv;
@@ -32,19 +38,21 @@ public class PhantasmForm{
     private String phantasmRange;
     
     /** 攻撃バフ*/
-    private double atkBuf;
+    private Double atkBuf = 0.0;
     
     /** カードバフ*/
-    private double cardBuf;
+    private Double cardBuf= 0.0;
     
     /** 宝具バフ*/
-    private double phantasmBuf;
+    private Double phantasmBuf= 0.0;
     
     /** 特攻バフ*/
-    private double specialBuf;
+    private Double specialBuf= 0.0;
     
     /** 宝具特攻*/
-    private double phantasmSpecial = 100;
+    @Min(value = 100, message = "100以上を入力してください。")
+    @NotNull(message = "100以上を入力してください。")
+    private Double phantasmSpecial = 100.0;
     
     /** クラス相性1*/
     private double classRate1;

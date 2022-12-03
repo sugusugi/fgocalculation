@@ -1,6 +1,7 @@
 package com.example.fgocalculation.form;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -17,16 +18,19 @@ public class NpGetForm{
     private String phantasmRange;
     
     /** カードバフ*/
-    private double cardBuf = 0;
+    private Double cardBuf = 0.0;
     
     /** NP獲得量バフ*/
-    private double npGetBuf = 0;
+    private Double npGetBuf = 0.0;
     
     /** HIT数*/
-    private int hit = 0;
+    @NotNull(message = "1以上を入力してください。")
+    @Min(value = 1, message = "1以上を入力してください。")
+    private Integer hit = 0;
     
     /** オーバーキルHIT数*/
-    private int overKillHit = 0;
+    @Min(0)
+    private Integer overKillHit = 0;
     
     /** 敵クラス1*/
     private String enemyClass1;

@@ -33,7 +33,7 @@ public class SessionsController {
     public String logoutComplete(Model model) {
         ToolNameForm form = new ToolNameForm();
         form.setToolName("ホーム");
-        model.addAttribute("form",form);
+        model.addAttribute("form", form);
         model.addAttribute("hasMessage", true);
         model.addAttribute("message", "ログアウトしました。");
         return "pages/index";

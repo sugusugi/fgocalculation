@@ -1,29 +1,33 @@
 package com.example.fgocalculation.form;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Min;
 
 import lombok.Data;
 
 @Data
 public class OverKillHitForm {
-    
-    @NotEmpty
-    /** 敵HP1*/
-    private int enemyHp1;
-    
-    @NotEmpty
-    /** ダメージ量１*/
-    private int damage1;
-    
-    /** 敵HP2*/
-    private int enemyHp2;
-    
-    /** ダメージ量2*/
-    private int damage2;
-    
-    /** 敵HP3*/
-    private int enemyHp3;
-    
-    /** ダメージ量3*/
-    private int damage3;
+
+    /** 敵HP1 */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer enemyHp1 = 0;
+
+    /** ダメージ量１ */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer damage1 = 0;
+
+    /** 敵HP2 */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer enemyHp2 = 0;
+
+    /** ダメージ量2 */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer damage2 = 0;
+
+    /** 敵HP3 */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer enemyHp3 = 0;
+
+    /** ダメージ量3 */
+    @Min(value = 0, message = "0以上を入力してください。")
+    private Integer damage3 = 0;
 }
