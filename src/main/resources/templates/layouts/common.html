@@ -44,14 +44,9 @@
 		crossorigin="anonymous"></script>
 	</nav>
 	<footer layout:fragment="footer">
-		<small class = "center">©FGO鬼周回</small> <a class = "right" href="#">利用規約</a>
+		<div class = "ps-3">
+			<span>©FGO鬼周回</span> <a class="right" href="#">利用規約</a>
+		</div>
 	</footer>
-	<div id="messages" layout:fragment="messages"
-		th:if="!${#lists.isEmpty(#fields.detailedErrors())}">
-		<ul>
-			<li th:each="error : ${#fields.detailedErrors()}"
-				class="error-message" th:text="${error.message}" />
-		</ul>
-	</div>
 </body>
 </html>
