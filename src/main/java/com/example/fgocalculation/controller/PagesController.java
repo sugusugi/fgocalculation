@@ -16,4 +16,20 @@ public class PagesController {
         model.addAttribute("form", form);
         return "pages/index";
     }
+    
+    @RequestMapping("/terms")
+    public String terms(Model model) {
+        ToolNameForm form = new ToolNameForm();
+        form.setToolName("利用規約");
+        model.addAttribute("form", form);
+        return "pages/terms";
+    }
+    
+    @RequestMapping("/privacy")
+    public String privacy(Model model) {
+        ToolNameForm form = new ToolNameForm();
+        form.setToolName("個人情報保護方針");
+        model.addAttribute("form", form);
+        return "pages/privacy";
+    }
 }
