@@ -4,54 +4,66 @@
 	layout:decorate="~{layouts/layout}">
 <body>
 	<div layout:fragment="contents">
-		<div class="container home">
+		<div class="container home pc">
 			<div class="row m-0">
-				<div class="col square"></div>
-				<div class="col square">
-					<a sec:authorize="!isAuthenticated()" href="/sessions/login" class="circlebtn bg-cyan-blue">ログイン</a>
+				<div class="col square circlebtn circlebtn"></div>
+				<div class="col square circlebtn">
+					<a sec:authorize="!isAuthenticated()" href="/sessions/login" class=" circlebtn bg-cyan-blue">ログイン</a>
 					<a sec:authorize = "isAuthenticated()" href="/mypages" class="circlebtn bg-cyan-blue">マイページ</a>
 				</div>
-				<div class="col square"></div>
-				<div class="col square">
-					<a sec:authorize = "!isAuthenticated()" href="/user/new" class="circlebtn bg-cyan-blue">新規</a>
+				<div class="col square circlebtn"></div>
+				<div class="col square circlebtn">
+					<a sec:authorize = "!isAuthenticated()" href="/user/new" class="bg-cyan-blue">新規</a>
 				</div>
-				<div class="col square"></div>
+				<div class="col square circlebtn"></div>
 			</div>
 			<div class="row m-0">
-				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="calculator/phantasm">宝具ダメージ</a>
+				<div class="col square circlebtn">
+					<a class="bg-cyan-blue" href="calculator/phantasm">宝具<br>ダメージ</a>
 				</div>
-				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="calculator/phantasm">宝具<br>ダメージ</a>
+				<div class="col square circlebtn"></div>
+				<div class="col square circlebtn">
+					<a class="bg-cyan-blue" href="calculator/npGet">NP<br>獲得量</a>
 				</div>
-				<div class="col square"></div>
-				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="calculator/npGet">NP獲得量</a>
-				</div>
-				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="calculator/npGet">NP<br>獲得量</a>
-				</div>
-				<div class="col square"></div>
-				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="#">通常攻撃ダメージ</a>
-				</div>
-				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="#">通常攻撃<br>ダメージ</a>
+				<div class="col square circlebtn"></div>
+				<div class="col square circlebtn">
+					<a class="bg-cyan-blue" href="#">通常攻撃<br>ダメージ</a>
 				</div>
 			</div>
 			<div class="row m-0">
-				<div class="col square"></div>
-				<div class="col square pc">
-					<a class="circlebtn bg-cyan-blue" href="#">スター獲得量</a>
+				<div class="col square circlebtn"></div>
+				<div class="col square circlebtn">
+					<a class="bg-cyan-blue" href="#">スター<br>獲得量</a>
 				</div>
-				<div class="col square sp">
-					<a class="circlebtn bg-cyan-blue" href="#">スター<br>獲得量</a>
+				<div class="col square circlebtn"></div>
+				<div class="col square circlebtn">
+					<a class="bg-cyan-blue" href="#">霊基<br>一覧</a>
 				</div>
-				<div class="col square"></div>
-				<div class="col square">
-					<a class="circlebtn bg-cyan-blue" href="#">霊基一覧</a>
-				</div>
-				<div class="col square"></div>
+				<div class="col square circlebtn"></div>
+			</div>
+		</div>
+		<div class="container home sp">
+			<div class="row circlebtn-mini">
+				<a sec:authorize="!isAuthenticated()" href="/sessions/login" class="bg-cyan-blue">ログイン</a>
+				<a sec:authorize = "isAuthenticated()" href="/mypages" class="bg-cyan-blue">マイページ</a>
+			</div>
+			<div class="row circlebtn-mini" sec:authorize = "!isAuthenticated()">
+				<a href="/user/new" class="bg-cyan-blue">新規</a>
+			</div>
+			<div class="row circlebtn-mini">
+				<a class="bg-cyan-blue" href="calculator/phantasm">宝具ダメージ</a>
+			</div>
+			<div class="row circlebtn-mini">
+				<a class="bg-cyan-blue" href="calculator/npGet">NP獲得量</a>
+			</div>
+			<div class="row circlebtn-mini">
+				<a class="bg-cyan-blue" href="#">通常攻撃ダメージ</a>
+			</div>
+			<div class="row circlebtn-mini">
+				<a class="bg-cyan-blue" href="#">スター獲得量</a>
+			</div>
+			<div class="row circlebtn-mini">
+				<a class="bg-cyan-blue" href="#">霊基一覧</a>
 			</div>
 		</div>
 	</div>
