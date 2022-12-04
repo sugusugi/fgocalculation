@@ -28,7 +28,8 @@
 				<li sec:authorize="isAuthenticated()" class="nav-item"><a
 					class="nav-link convert-post-method" href="/logout"
 					data-method="post" th:data-_csrf="${_csrf.token}">ログアウト</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">利用規約</a></li>
+				<li class="nav-item"><a class="nav-link" href="/terms">利用規約</a></li>
+				<li class="nav-item"><a class="nav-link" href="/privacy">個人情報保護方針</a></li>
 			</ul>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -45,7 +46,7 @@
 	</nav>
 	<footer layout:fragment="footer">
 		<div class = "ps-3">
-			<span>©FGO鬼周回</span> <a class="right" href="#">利用規約</a>
+			<span>©FGO鬼周回　</span><a href="/terms">利用規約</a><span>　</span><a href = "/privacy">個人情報保護方針</a>
 		</div>
 	</footer>
 </body>

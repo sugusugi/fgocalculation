@@ -7,6 +7,11 @@ a{
 h1 {
 	font-size: calc(1.1rem + 1.5vw);
 }
+
+input[type = "radio"]{
+	display: none;
+}
+
 footer{
 	position: fixed;
 	bottom: 0;
@@ -16,8 +21,12 @@ footer{
 	box-shadow: 0 10px 25px 0 rgba(0,0,0,0.5);
 	div{
 		margin: 0.3% 0;
-		font-size: calc(0.5rem + 0.7vw);
+		font-size: calc(0.8rem + 0.3vw);
 	}
+}
+
+.container{
+	margin-bottom: 40px;
 }
 
 .row div {
@@ -57,10 +66,6 @@ footer{
 	font-size: 2rem;
 	clear: both;
 	overflow: hidden;
-}
-
-input[type = "radio"]{
-	display: none;
 }
 
 .ans{
@@ -275,8 +280,9 @@ p.item-name{
 	}
 }
 
-@media (max-width: 335px){
+@media (max-width: 400px){
 	.navbar-brand{ display: none !important; }
+	footer{ display: none !important;}
 }
 
 .param-botton button{
@@ -401,4 +407,21 @@ p.item-name{
 
 .delete-message{
 	font-size: calc(0.8rem + 0.5vw);
+}
+
+.terms{
+	h1 {
+		font-size: calc(1.5rem + 1vw);
+	}
+	h2{
+		font-size: calc(1.2rem + 0.7vw);
+	}
+	p{
+		margin: 0 auto 1rem 1rem;
+		line-height: 1.7rem;
+		font-size: calc(0.8rem + 0.3vw);
+	}
+	li{
+		font-size: calc(0.8rem + 0.3vw);
+	}
 }

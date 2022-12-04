@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeRequests().antMatchers
-        ("/user/new", "/user", "/sessions/login", "/calculator/**", "/**/search", "/calculation/**").permitAll()
+        ("/terms", "/privacy", "/user/new", "/user", "/sessions/login", "/calculator/**", "/**/search", "/calculation/**").permitAll()
                 .anyRequest().authenticated()
                 // ログアウト処理
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout-complete").clearAuthentication(true)
