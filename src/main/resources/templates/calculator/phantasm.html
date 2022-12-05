@@ -10,250 +10,361 @@
 		<div class="container">
 			<div class="row mx-auto">
 				<!-- パラメーター入力欄 -->
-				<div class="col-xl-7 border bg-blueRight">
+				<div class="col-xl-8 border bg-blueRight">
 					<div class="row">
-						<h1 class = "bg-cyan-blue text-white">パラメーター</h1>
+						<h1 class="bg-cyan-blue text-white" th:text=${form.toolName}></h1>
 					</div>
-					<form th:action="@{/phantasm/search}" method="POST" th:object="${form}">
+					<form th:action="@{/phantasm/search}" method="POST"
+						th:object="${form}">
 						<input type="hidden" th:field=*{toolName}>
-						<div class="row mb-3">
-							<div class="col-md-6 col-sm-6">
-								<label class="block item-name" for="servantName">サーバント名</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px" type="text" th:field="*{servantName}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('servantName')}" th:errors="*{servantName}"></span>
+						<div class="row ">
+							<div class=" col-sm-6">
+								<div class="item-box">
+									<label class="block item-name" for="servantName">サーバント名</label>
+									<input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px"
+										type="text" th:field="*{servantName}"> <br> <span
+										class="error-message"
+										th:if="${#fields.hasErrors('servantName')}"
+										th:errors="*{servantName}"></span>
+								</div>
 							</div>
-							<div class="col-md-3 col-sm-3">
-								<label class="block item-name" for="level">Lv</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{level}">
-									<option value="atk">MAX</option>
-									<option value="atkLv100">100</option>
-									<option value="atkLv120">120</option>
-								</select>
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="level">Lv</label> <select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{level}">
+										<option value="atk">MAX</option>
+										<option value="atkLv100">100</option>
+										<option value="atkLv120">120</option>
+									</select>
+								</div>
 							</div>
-							<div class="col-md-3 col-sm-3 text-center">
-								<div class="answer-button">
-									<button class="rounded-pill wmin-100-10rem mx-auto" type="submit">検索</button>
+							<div class="col-sm-3 text-center">
+								<div class="serch-botton">
+									<button class="wmin-100-10rem mx-auto" type="submit">検索</button>
 								</div>
 								<th:block th:if="${servantNot}">
-									<p class = "error-message m-0" th:text="${servantNotMessage}"></p>
+									<p class="error-message m-0" th:text="${servantNotMessage}"></p>
 								</th:block>
 							</div>
 						</div>
 					</form>
-					<form th:action="@{/calculation/phantasm}" method="POST" id="calculation"
-						th:object="${servantParameter}">
+					<form th:action="@{/calculation/phantasm}" method="POST"
+						id="calculation" th:object="${servantParameter}">
 						<input type="hidden" th:field=${form.toolName}> <input
 							type="hidden" th:field="*{servantName}"> <input
 							type="hidden" th:field="*{classTypeName}">
-						<div class="row mb-3">
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="atk">ATK</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{atk}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('atk')}" th:errors="*{atk}"></span>
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="atk">ATK</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="1000" min="0" th:field="*{atk}"> <br>
+									<span class="error-message" th:if="${#fields.hasErrors('atk')}"
+										th:errors="*{atk}"></span>
+								</div>
 							</div>
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="fou">フォウ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{fou}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('fou')}" th:errors="*{fou}"></span>
+							<div class=" col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="fou">フォウ</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="1000" min="0" max="2000" th:field="*{fou}">
+									<br> <span class="error-message"
+										th:if="${#fields.hasErrors('fou')}" th:errors="*{fou}"></span>
+								</div>
 							</div>
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="spiritual">礼装</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{spiritual}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('spiritual')}" th:errors="*{spiritual}"></span>
+							<div class=" col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="spiritual">礼装</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="500" min="0" max="2400"
+										th:field="*{spiritual}"> <br> <span
+										class="error-message"
+										th:if="${#fields.hasErrors('spiritual')}"
+										th:errors="*{spiritual}"></span>
+								</div>
 							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="phantasmLv">宝具Lv</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{phantasmLv}">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="phantasmCardType">カード</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{phantasmCardType}">
-									<option value="バスター">バスター</option>
-									<option value="アーツ">アーツ</option>
-									<option value="クイック">クイック</option>
-								</select>
-							</div>
-							<div class="col-md-4 col-sm-4">
-								<label class="block item-name" for="phantasmRange">宝具範囲</label>
-								<input type = "hidden" th:field="*{phantasmRange}">
-								<p class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:text="*{phantasmRange}"></p>
-							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col-sm-4">
-								<label class="block item-name" for="atkBuf">攻撃バフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{atkBuf}">
-							</div>
-							<div class="col-sm-4">
-								<label class="block item-name" for="cardBuf">カードバフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{cardBuf}">
-							</div>
-							<div class="col-sm-4">
-								<label class="block item-name" for="phantasmBuf">宝具バフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{phantasmBuf}">
+							<div class=" col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="phantasmCardType">カード</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{phantasmCardType}">
+										<option value="バスター">バスター</option>
+										<option value="アーツ">アーツ</option>
+										<option value="クイック">クイック</option>
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="row mb-3">
-							<div class="col-sm-4">
-								<label class="block item-name" for="specialBuf">特攻バフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"type="number" th:field="*{specialBuf}">
+						<div class="row ">
+							<div class=" col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="phantasmLv">宝具Lv</label> <select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{phantasmLv}">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
 							</div>
-							<div class="col-sm-4">
-								<label class="block item-name" for="phantasmSpecial">宝具特攻</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{phantasmSpecial}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('phantasmSpecial')}" th:errors="*{phantasmSpecial}"></span>
+							<div class=" col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="phantasmRange">宝具範囲</label>
+									<input type="hidden" th:field="*{phantasmRange}">
+									<p
+										class="m-0 inline-block bg-translucent wmin-100-12rem h-50 f-18px"
+										th:text="*{phantasmRange}"></p>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="atkBuf">攻撃バフ</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="10" th:field="*{atkBuf}">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="cardBuf">カードバフ</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="10" th:field="*{cardBuf}">
+								</div>
 							</div>
 						</div>
-						<div class="row mb-3">
+						<div class="row ">
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="phantasmBuf">宝具バフ</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="10" th:field="*{phantasmBuf}">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="specialBuf">特攻バフ</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" step="10" th:field="*{specialBuf}">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="item-box">
+									<label class="block item-name" for="phantasmSpecial">宝具特攻</label>
+									<input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" min="100" step="10"
+										th:field="*{phantasmSpecial}"> <br> <span
+										class="error-message"
+										th:if="${#fields.hasErrors('phantasmSpecial')}"
+										th:errors="*{phantasmSpecial}"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row ">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="classRate1">クラス相性1</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{classRate1}">
-									<option value="2.0">2倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.5">0.5倍(不利)</option>
-									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="classRate1">クラス相性1</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{classRate1}">
+										<option value="2.0">2倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.5">0.5倍(不利)</option>
+										<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+									</select>
+								</div>
 							</div>
 							<div class="col-sm-4" th:if="*{phantasmRange == '単体'}">
-								<label class="block item-name" for="classRate1">クラス相性</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{classRate1}">
-									<option value="2.0">2倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.5">0.5倍(不利)</option>
-									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="classRate1">クラス相性</label> <select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{classRate1}">
+										<option value="2.0">2倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.5">0.5倍(不利)</option>
+										<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+									</select>
+								</div>
 							</div>
-							<input type="hidden" th:field="*{classRate2}" value="0" th:if="*{phantasmRange == '単体'}">
+							<input type="hidden" th:field="*{classRate2}" value="0"
+								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="classRate2">クラス相性2</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{classRate2}">
-									<option value="2.0">2倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.5">0.5倍(不利)</option>
-									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="classRate2">クラス相性2</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{classRate2}">
+										<option value="2.0">2倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.5">0.5倍(不利)</option>
+										<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+									</select>
+								</div>
 							</div>
-							<input type="hidden" th:field="*{classRate3}" value="0" th:if="*{phantasmRange == '単体'}">
+							<input type="hidden" th:field="*{classRate3}" value="0"
+								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="classRate3">クラス相性3</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{classRate3}">
-									<option value="2.0">2倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.5">0.5倍(不利)</option>
-									<option value="1.5">1.5倍(狂・分・詐 有利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="classRate3">クラス相性3</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{classRate3}">
+										<option value="2.0">2倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.5">0.5倍(不利)</option>
+										<option value="1.5">1.5倍(狂・分・詐 有利)</option>
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="row mb-3">
+						<div class="row ">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="attributeRate1">属性相性1</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{attributeRate1}">
-									<option value="1.1">1.1倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.9">0.9倍(不利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="attributeRate1">属性相性1</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{attributeRate1}">
+										<option value="1.1">1.1倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.9">0.9倍(不利)</option>
+									</select>
+								</div>
 							</div>
 							<div class="col-sm-4" th:if="*{phantasmRange == '単体'}">
-								<label class="block item-name" for="attributeRate1">属性相性</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{attributeRate1}">
-									<option value="1.1">1.1倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.9">0.9倍(不利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="attributeRate1">属性相性</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{attributeRate1}">
+										<option value="1.1">1.1倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.9">0.9倍(不利)</option>
+									</select>
+								</div>
 							</div>
 							<input type="hidden" th:field="*{attributeRate2}" value="0"
 								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="attributeRate2">属性相性2</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{attributeRate2}">
-									<option value="1.1">1.1倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.9">0.9倍(不利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="attributeRate2">属性相性2</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{attributeRate2}">
+										<option value="1.1">1.1倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.9">0.9倍(不利)</option>
+									</select>
+								</div>
 							</div>
 							<input type="hidden" th:field="*{attributeRate3}" value="0"
 								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="attributeRate3">属性相性3</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{attributeRate3}">
-									<option value="1.1">1.1倍(有利)</option>
-									<option value="1.0" selected>1倍(等倍)</option>
-									<option value="0.9">0.9倍(不利)</option>
-								</select>
+								<div class="item-box">
+									<label class="block item-name" for="attributeRate3">属性相性3</label>
+									<select
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										th:field="*{attributeRate3}">
+										<option value="1.1">1.1倍(有利)</option>
+										<option value="1.0" selected>1倍(等倍)</option>
+										<option value="0.9">0.9倍(不利)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="answer-button">
+								<button class="mt-4 mb-2 mx-auto" type="submit">
+									<span>結果の表示</span> PUSH
+								</button>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div class="col-xl-2 text-center">
-					<div class="answer-button">
-						<button class = "mt-4 mb-2 mx-auto" type = "submit" form = "calculation"> <span>結果の表示</span> PUSH</button>
-					</div>
-				</div>
+				<div class="col-xl-1"></div>
 				<!-- 結果 -->
 				<div class="col-xl-3 border bg-blueRight align-self-start">
 					<div class="row">
 						<h1 class="bg-cyan-blue text-white">ダメージ量</h1>
 					</div>
-					<div class="row enemy-1 align-items-center">
+					<div class="row align-items-center">
 						<div class="col">
-						<p class = "item-name f-24px">敵1</p>
-						<div class = "tabs">
-							<input class="radio-botton" id="ans-max-1" type="radio" name="radio-botton-1">
-							<label class="ans-tab" for="ans-max-1">MAX</label>
-							<input class="radio-botton" id="ans-1" type="radio" name="radio-botton-1" checked>
-							<label class="ans-tab" for="ans-1">平均</label>
-							<input class="radio-botton" id="ans-min-1" type="radio" name="radio-botton-1">
-							<label class="ans-tab" for="ans-min-1">MIN</label>
-							<div>
-								<p class="ans-max-content-1 tab-content text-center" th:text="${answer1Max}"></p>
-								<p class="ans-content-1 tab-content text-center" th:text="${answer1}"></p>
-								<p class="ans-min-content-1 tab-content text-center" th:text="${answer1Min}"></p>
+							<div class="ans-box enemy-1 wmin-100-30rem m-auto">
+								<p class="item-name f-24px">敵1</p>
+								<div class="tabs">
+									<input class="radio-botton" id="ans-max-1" type="radio"
+										name="radio-botton-1"> <label class="ans-tab"
+										for="ans-max-1">MAX</label> <input class="radio-botton"
+										id="ans-1" type="radio" name="radio-botton-1" checked>
+									<label class="ans-tab" for="ans-1">平均</label> <input
+										class="radio-botton" id="ans-min-1" type="radio"
+										name="radio-botton-1"> <label class="ans-tab"
+										for="ans-min-1">MIN</label>
+									<div>
+										<p class="ans-max-content-1 tab-content text-center"
+											th:text="${answer1Max}"></p>
+										<p class="ans-content-1 tab-content text-center"
+											th:text="${answer1}"></p>
+										<p class="ans-min-content-1 tab-content text-center"
+											th:text="${answer1Min}"></p>
+									</div>
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
-					<div class="row enemy-2 align-items-center" th:if = "${servantParameter.phantasmRange != '単体'}">
+					<div class="row align-items-center"
+						th:if="${servantParameter.phantasmRange != '単体'}">
 						<div class="col">
-						<p class = "item-name f-24px">敵2</p>
-						<div class = "tabs">
-							<input class="radio-botton" id="ans-max-2" type="radio" name="radio-botton-2">
-							<label class="ans-tab" for="ans-max-2">MAX</label>
-							<input class="radio-botton" id="ans-2" type="radio" name="radio-botton-2" checked>
-							<label class="ans-tab" for="ans-2">平均</label>
-							<input class="radio-botton" id="ans-min-2" type="radio" name="radio-botton-2">
-							<label class="ans-tab" for="ans-min-2">MIN</label>
-							<div>
-								<p class="ans-max-content-2 tab-content text-center" th:text="${answer2Max}"></p>
-								<p class="ans-content-2 tab-content text-center" th:text="${answer2}"></p>
-								<p class="ans-min-content-2 tab-content text-center" th:text="${answer2Min}"></p>
+							<div class="ans-box enemy-2 wmin-100-30rem m-auto">
+								<p class="item-name f-24px">敵2</p>
+								<div class="tabs">
+									<input class="radio-botton" id="ans-max-2" type="radio"
+										name="radio-botton-2"> <label class="ans-tab"
+										for="ans-max-2">MAX</label> <input class="radio-botton"
+										id="ans-2" type="radio" name="radio-botton-2" checked>
+									<label class="ans-tab" for="ans-2">平均</label> <input
+										class="radio-botton" id="ans-min-2" type="radio"
+										name="radio-botton-2"> <label class="ans-tab"
+										for="ans-min-2">MIN</label>
+									<div>
+										<p class="ans-max-content-2 tab-content text-center"
+											th:text="${answer2Max}"></p>
+										<p class="ans-content-2 tab-content text-center"
+											th:text="${answer2}"></p>
+										<p class="ans-min-content-2 tab-content text-center"
+											th:text="${answer2Min}"></p>
+									</div>
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
-					<div class="row enemy-3 align-items-center" th:if = "${servantParameter.phantasmRange != '単体'}">
+					<div class="row align-items-center"
+						th:if="${servantParameter.phantasmRange != '単体'}">
 						<div class="col">
-						<p class = "item-name f-24px">敵3</p>
-						<div class = "tabs">
-							<input class="radio-botton" id="ans-max-3" type="radio" name="radio-botton-3">
-							<label class="ans-tab" for="ans-max-3">MAX</label>
-							<input class="radio-botton" id="ans-3" type="radio" name="radio-botton-3" checked>
-							<label class="ans-tab" for="ans-3">平均</label>
-							<input class="radio-botton" id="ans-min-3" type="radio" name="radio-botton-3">
-							<label class="ans-tab" for="ans-min-3">MIN</label>
-							<div>
-								<p class="ans-max-content-3 tab-content text-center" th:text="${answer3Max}"></p>
-								<p class="ans-content-3 tab-content text-center" th:text="${answer3}"></p>
-								<p class="ans-min-content-3 tab-content text-center" th:text="${answer3Min}"></p>
+							<div class="ans-box enemy-3 wmin-100-30rem m-auto">
+								<p class="item-name f-24px">敵3</p>
+								<div class="tabs">
+									<input class="radio-botton" id="ans-max-3" type="radio"
+										name="radio-botton-3"> <label class="ans-tab"
+										for="ans-max-3">MAX</label> <input class="radio-botton"
+										id="ans-3" type="radio" name="radio-botton-3" checked>
+									<label class="ans-tab" for="ans-3">平均</label> <input
+										class="radio-botton" id="ans-min-3" type="radio"
+										name="radio-botton-3"> <label class="ans-tab"
+										for="ans-min-3">MIN</label>
+									<div>
+										<p class="ans-max-content-3 tab-content text-center"
+											th:text="${answer3Max}"></p>
+										<p class="ans-content-3 tab-content text-center"
+											th:text="${answer3}"></p>
+										<p class="ans-min-content-3 tab-content text-center"
+											th:text="${answer3Min}"></p>
+									</div>
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 				</div>

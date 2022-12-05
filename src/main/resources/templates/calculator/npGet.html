@@ -3,37 +3,46 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
 <head>
-<title>NP獲得計算～鬼周回への道～</title>
+<title>NP獲得量計算～鬼周回への道～</title>
 </head>
 <body>
 	<div layout:fragment="contents">
 		<div class="container">
 			<div class="row mx-auto">
-				<div class="col-lg-8 border bg-blueRight">
+				<!-- パラメーター入力欄 -->
+				<div class="col-sm-8 border bg-blueRight">
 					<div class="row">
-						<h1 class = "bg-cyan-blue text-white">パラメーター</h1>
+						<h1 class="bg-cyan-blue text-white" th:text=${form.toolName}>パラメーター</h1>
 					</div>
-					<form th:action="@{/npGet/search}" method="POST" th:object="${form}">
+					<form th:action="@{/npGet/search}" method="POST"
+						th:object="${form}">
 						<input type="hidden" th:field=*{toolName}>
 						<div class="row">
 							<div class="col-sm-8">
-								<label class="block item-name" for="servantName">サーバント名</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px" type="text" th:field=*{servantName}>
-								<br><span class="error-message" th:if="${#fields.hasErrors('servantName')}" th:errors="*{servantName}"></span>
+								<div class="item-box">
+									<label class="block item-name" for="servantName">サーバント名</label>
+									<input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-17rem f-18px"
+										type="text" th:field=*{servantName}> <br> <span
+										class="error-message"
+										th:if="${#fields.hasErrors('servantName')}"
+										th:errors="*{servantName}"></span>
+								</div>
 							</div>
-							<div class="col text-center">
-								<div class="answer-button">
-									<button class="rounded-pill wmin-100-10rem mx-auto" type="submit">検索</button>
+							<div class="col-sm-4 text-center">
+								<div class="serch-botton">
+									<button class="wmin-100-10rem mx-auto" type="submit">検索</button>
 								</div>
 								<th:block th:if="${servantNot}">
-									<p class = "error-message" th:text="${servantNotMessage}"></p>
+									<p class="error-message m-0" th:text="${servantNotMessage}"></p>
 								</th:block>
 							</div>
 						</div>
 					</form>
-					<form th:action="@{/calculation/npGet}" method="POST" th:object="${servantParameter}">
-						<input type="hidden" th:field=${form.toolName}>
-						<input type="hidden" th:field="*{servantName}">
+					<form th:action="@{/calculation/npGet}" method="POST"
+						th:object="${servantParameter}">
+						<input type="hidden" th:field=${form.toolName}> <input
+							type="hidden" th:field="*{servantName}">
 						<th:object th:object="${overKillHitForm}">
 							<input type="hidden" th:field="*{enemyHp1}">
 							<input type="hidden" th:field="*{enemyHp2}">
@@ -42,47 +51,71 @@
 							<input type="hidden" th:field="*{damage2}">
 							<input type="hidden" th:field="*{damage3}">
 						</th:object>
-						<div class="row mb-3">
+						<div class="row">
 							<div class="col-sm-4">
-								<label class="block item-name" for="cardType">カード</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{cardType}">
+							<div class="item-box">
+								<label class="block item-name" for="cardType">カード</label> <select
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									th:field="*{cardType}">
 									<option value="バスター">バスター</option>
 									<option value="アーツ">アーツ</option>
 									<option value="クイック">クイック</option>
 								</select>
+								</div>
 							</div>
 							<div class="col-sm-4">
-								<label class="block item-name" for="cardBuf">カードバフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{cardBuf}">
-							</div>
-							<div class="col-sm-4">
-								<label class="block item-name" for="npGetBuf">NP獲得量バフ</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{npGetBuf}">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4">
+							<div class="item-box">
 								<label class="block item-name" for="phantasmRange">宝具範囲</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" th:field="*{phantasmRange}">
-									<option value="単体">単体</option>
-									<option value="全体">全体</option>
-								</select>
+								<input type="hidden" th:field="*{phantasmRange}">
+								<p
+									class="m-0 inline-block bg-translucent wmin-100-12rem h-50 f-18px"
+									th:text="*{phantasmRange}"></p>
+							</div>
 							</div>
 							<div class="col-sm-4">
-								<label class="block item-name" for="hit">HIT数</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{hit}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('hit')}" th:errors="*{hit}"></span>
-							</div>
-							<div class="col-sm-4">
-								<label class="block item-name" for="overKillHit">オーバーキルHIT数</label>
-								<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{overKillHit}">
-								<br><span class="error-message" th:if="${#fields.hasErrors('overKillHit')}" th:errors="*{overKillHit}"></span>
+							<div class="item-box">
+								<label class="block item-name" for="phantasmRange">HIT数</label>
+								<input type="hidden" th:field="*{hit}">
+								<p
+									class="m-0 inline-block bg-translucent wmin-100-12rem h-50 f-18px"
+									th:text="*{hit}"></p>
+									</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<label class="block item-name" for="enemyClass1">敵クラス1</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" name="enemyClass1" th:field="*{enemyClass1}">
+							<div class="item-box">
+								<label class="block item-name" for="cardBuf">カードバフ</label> <input
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									type="number" th:field="*{cardBuf}">
+								</div>
+							</div>
+							<div class="col-sm-4">
+							<div class="item-box">
+								<label class="block item-name" for="npGetBuf">NP獲得量バフ</label> <input
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									type="number" th:field="*{npGetBuf}">
+									</div>
+							</div>
+							<div class="col-sm-4">
+							<!-- OKKill算出フォームの表示・非表示切替ボタンの作成 -->
+							<div class="item-box">
+								<label class="block item-name" for="overKillHit">OKHIT数</label>
+								<input
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									type="number" th:field="*{overKillHit}"> <br>
+								<span class="error-message"
+									th:if="${#fields.hasErrors('overKillHit')}"
+									th:errors="*{overKillHit}"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+							<div class="item-box">
+								<label class="block item-name" for="enemyClass1">敵クラス1</label> <select
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									name="enemyClass1" th:field="*{enemyClass1}">
 									<option value="セイバー">セイバー</option>
 									<option value="アーチャー">アーチャー</option>
 									<option value="ランサー">ランサー</option>
@@ -98,11 +131,15 @@
 									<option value="フォーリナー">フォーリナー</option>
 									<option value="プリテンダー">プリテンダー</option>
 								</select>
+								</div>
 							</div>
-							<input type="hidden" th:field="*{enemyClass2}" value="" th:if="*{phantasmRange == '単体'}">
+							<input type="hidden" th:field="*{enemyClass2}" value=""
+								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="enemyClass2">敵クラス2</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" name="enemyClass2" th:field="*{enemyClass2}">
+							<div class="item-box">
+								<label class="block item-name" for="enemyClass2">敵クラス2</label> <select
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									name="enemyClass2" th:field="*{enemyClass2}">
 									<option value="">なし</option>
 									<option value="セイバー">セイバー</option>
 									<option value="アーチャー">アーチャー</option>
@@ -119,12 +156,15 @@
 									<option value="フォーリナー">フォーリナー</option>
 									<option value="プリテンダー">プリテンダー</option>
 								</select>
+								</div>
 							</div>
 							<input type="hidden" th:field="*{enemyClass3}" value=""
 								th:if="*{phantasmRange == '単体'}">
 							<div class="col-sm-4" th:if="*{phantasmRange != '単体'}">
-								<label class="block item-name" for="enemyClass3">敵クラス3</label>
-								<select class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" name="enemyClass3" th:field="*{enemyClass3}">
+							<div class="item-box">
+								<label class="block item-name" for="enemyClass3">敵クラス3</label> <select
+									class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+									name="enemyClass3" th:field="*{enemyClass3}">
 									<option value="">なし</option>
 									<option value="セイバー">セイバー</option>
 									<option value="アーチャー">アーチャー</option>
@@ -141,21 +181,26 @@
 									<option value="フォーリナー">フォーリナー</option>
 									<option value="プリテンダー">プリテンダー</option>
 								</select>
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col text-center">
 								<div class="answer-button">
-									<button class="mt-4 mb-2 mx-auto" type="submit"> <span>結果の表示</span>PUSH</button>
+									<button class="mt-4 mb-2 mx-auto" type="submit">
+										<span>結果の表示</span>PUSH
+									</button>
 								</div>
 							</div>
 						</div>
 					</form>
 					<!-- オーバーキルHIT数自動算出 -->
 					<div class="row">
-						<h1 class="bg-cyan-blue text-white">オーバーキルHIT数自動算出</h1>
+						<h1 class="bg-cyan-blue text-white">OKHIT数自動算出<button class = "display-hidden-botton">表示</button></h1>
 					</div>
-					<form th:action="@{/calculation/overKill}" method="POST" th:object="${overKillHitForm}">
+					<div class="display-hidden">
+					<form th:action="@{/calculation/overKill}" method="POST"
+						th:object="${overKillHitForm}">
 						<div class="row">
 							<input type="hidden" th:field=${form.toolName}>
 							<th:block th:object="${servantParameter}">
@@ -171,67 +216,99 @@
 							</th:block>
 							<div class="row">
 								<div class="col-sm-4">
-									<label class="block item-name" for="enemyHp1">敵HP1</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{enemyHp1}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('enemyHp1')}" th:errors="*{enemyHp1}"></span>
+								<div class="item-box">
+									<label class="block item-name" for="enemyHp1">敵HP1</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{enemyHp1}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('enemyHp1')}"
+										th:errors="*{enemyHp1}"></span>
+										</div>
 								</div>
 								<div class="col-sm-4"
 									th:if="${servantParameter.phantasmRange != '単体'}">
-									<label class="block item-name" for="enemyHp2">敵HP2</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{enemyHp2}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('enemyHp2')}" th:errors="*{enemyHp2}"></span>
+									<div class="item-box">
+									<label class="block item-name" for="enemyHp2">敵HP2</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{enemyHp2}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('enemyHp2')}"
+										th:errors="*{enemyHp2}"></span>
+										</div>
 								</div>
 								<div class="col-sm-4"
 									th:if="${servantParameter.phantasmRange != '単体'}">
-									<label class="block item-name" for="enemyHp3">敵HP3</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{enemyHp3}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('enemyHp3')}" th:errors="*{enemyHp3}"></span>
+									<div class="item-box">
+									<label class="block item-name" for="enemyHp3">敵HP3</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{enemyHp3}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('enemyHp3')}"
+										th:errors="*{enemyHp3}"></span>
+										</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-4">
-									<label class="block item-name" for="damage1">ダメージ量1</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{damage1}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('damage1')}" th:errors="*{damage1}"></span>
+								<div class="item-box">
+									<label class="block item-name" for="damage1">ダメージ量1</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{damage1}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('damage1')}" th:errors="*{damage1}"></span>
+								</div>
 								</div>
 								<div class="col-sm-4"
 									th:if="${servantParameter.phantasmRange != '単体'}">
-									<label class="block item-name" for="damage2">ダメージ量2</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{damage2}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('damage2')}" th:errors="*{damage2}"></span>
+									<div class="item-box">
+									<label class="block item-name" for="damage2">ダメージ量2</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{damage2}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('damage2')}" th:errors="*{damage2}"></span>
+										</div>
 								</div>
 								<div class="col-sm-4"
 									th:if="${servantParameter.phantasmRange != '単体'}">
-									<label class="block item-name" for="damage3">ダメージ量3</label>
-									<input class = "border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px" type="number" th:field="*{damage3}">
-									<br><span class="error-message" th:if="${#fields.hasErrors('damage3')}" th:errors="*{damage3}"></span>
+									<div class="item-box">
+									<label class="block item-name" for="damage3">ダメージ量3</label> <input
+										class="border-bottom-only border-2 border-dark bg-translucent wmin-100-12rem f-18px"
+										type="number" th:field="*{damage3}"> <br>
+									<span class="error-message"
+										th:if="${#fields.hasErrors('damage3')}" th:errors="*{damage3}"></span>
+									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col text-center">
 									<div class="answer-button">
-										<button class="rounded-pill wmin-100-10rem mx-auto" type="submit">算出</button>
+										<button class="rounded-pill wmin-100-10rem mx-auto"
+											type="submit">算出</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</form>
-				</div>
-				<div class="col-lg-1"></div>
-				<div class="col-lg-3 border bg-blueRight align-self-start">
-					<div class="row">
-						<h1 class = "bg-cyan-blue text-white">NP獲得量</h1>
 					</div>
-					<div class="row enemy-1 align-items-center">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-3 border bg-blueRight align-self-start">
+					<div class="row">
+						<h1 class="bg-cyan-blue text-white">獲得量</h1>
+					</div>
+					<div class="row ans-box enemy-1 align-items-center">
 						<div class="col">
 							<div class="tabs">
-								<input class="radio-botton" id="ans-max-1" type="radio" name="radio-botton-1">
-								<label class="ans-tab tab-2" for="ans-max-1">OKあり</label>
-								<input class="radio-botton" id="ans-1" type="radio" name="radio-botton-1" checked>
+								<input class="radio-botton" id="ans-max-1" type="radio"
+									name="radio-botton-1"> <label class="ans-tab tab-2"
+									for="ans-max-1">OKあり</label> <input class="radio-botton"
+									id="ans-1" type="radio" name="radio-botton-1" checked>
 								<label class="ans-tab tab-2" for="ans-1">OKなし</label>
 								<div>
-									<p class="ans-max-content-1 tab-content text-center" th:text="${overKillNpGet}"></p>
-									<p class="ans-content-1 tab-content text-center" th:text="${npGet}"></p>
+									<p class="ans-max-content-1 tab-content text-center"
+										th:text="${overKillNpGet}"></p>
+									<p class="ans-content-1 tab-content text-center"
+										th:text="${npGet}"></p>
 								</div>
 							</div>
 						</div>

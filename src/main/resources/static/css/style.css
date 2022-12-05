@@ -22,16 +22,20 @@ footer {
 .container {
   margin-bottom: 40px; }
 
-.row div {
-  margin-bottom: 10px; }
+.item-name {
+  font-family: "游ゴシック 本文";
+  color: #000064;
+  font-weight: bolder; }
 
-.tabs {
+.ans-box .item-name {
+  font-size: calc(0.7rem + 0.7vw);
+  margin-bottom: 5px; }
+.ans-box .tabs {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   margin: 0 auto; }
-
-.ans-tab {
+.ans-box .ans-tab {
   width: calc(100%/3);
   border-bottom: 3px solid #5ab4bd;
   background-color: #d9d9d9;
@@ -40,54 +44,46 @@ footer {
   display: block;
   float: left;
   text-align: center;
+  font-size: calc(0.7rem + 0.6vw);
   font-weight: bold;
   transition: all 0.2s ease; }
-
-.tab-2 {
+.ans-box .tab-2 {
   width: calc(100%/2); }
-
-.tab-3 {
+.ans-box .tab-3 {
   width: calc(100%/3); }
-
-.tab-content {
+.ans-box .tab-content {
   display: none;
-  font-size: 2rem;
+  font-size: calc(1.2rem + 1vw);
   clear: both;
   overflow: hidden; }
-
-.ans {
-  display: flex; }
-
-.enemy-1 .ans-tab:hover {
+.ans-box.enemy-1 .ans-tab:hover {
   background-color: #d9d9d9;
   opacity: 0.75; }
-.enemy-1 #ans-max-1:checked ~ div .ans-max-content-1,
-.enemy-1 #ans-1:checked ~ div .ans-content-1,
-.enemy-1 #ans-min-1:checked ~ div .ans-min-content-1 {
+.ans-box.enemy-1 #ans-max-1:checked ~ div .ans-max-content-1,
+.ans-box.enemy-1 #ans-1:checked ~ div .ans-content-1,
+.ans-box.enemy-1 #ans-min-1:checked ~ div .ans-min-content-1 {
   display: block; }
-.enemy-1 .tabs input:checked + .ans-tab {
+.ans-box.enemy-1 .tabs input:checked + .ans-tab {
   background-color: #5ab4bd;
   color: #fff; }
-
-.enemy-2 .ans-tab:hover {
+.ans-box.enemy-2 .ans-tab:hover {
   background-color: #d9d9d9;
   opacity: 0.75; }
-.enemy-2 #ans-max-2:checked ~ div .ans-max-content-2,
-.enemy-2 #ans-2:checked ~ div .ans-content-2,
-.enemy-2 #ans-min-2:checked ~ div .ans-min-content-2 {
+.ans-box.enemy-2 #ans-max-2:checked ~ div .ans-max-content-2,
+.ans-box.enemy-2 #ans-2:checked ~ div .ans-content-2,
+.ans-box.enemy-2 #ans-min-2:checked ~ div .ans-min-content-2 {
   display: block; }
-.enemy-2 .tabs input:checked + .ans-tab {
+.ans-box.enemy-2 .tabs input:checked + .ans-tab {
   background-color: #5ab4bd;
   color: #fff; }
-
-.enemy-3 .ans-tab:hover {
+.ans-box.enemy-3 .ans-tab:hover {
   background-color: #d9d9d9;
   opacity: 0.75; }
-.enemy-3 #ans-max-3:checked ~ div .ans-max-content-3,
-.enemy-3 #ans-3:checked ~ div .ans-content-3,
-.enemy-3 #ans-min-3:checked ~ div .ans-min-content-3 {
+.ans-box.enemy-3 #ans-max-3:checked ~ div .ans-max-content-3,
+.ans-box.enemy-3 #ans-3:checked ~ div .ans-content-3,
+.ans-box.enemy-3 #ans-min-3:checked ~ div .ans-min-content-3 {
   display: block; }
-.enemy-3 .tabs input:checked + .ans-tab {
+.ans-box.enemy-3 .tabs input:checked + .ans-tab {
   background-color: #5ab4bd;
   color: #fff; }
 
@@ -132,25 +128,6 @@ footer {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem; }
 
-.error-message {
-  color: crimson; }
-
-.home {
-  padding-right: max(calc(30vw - 140px), 10px);
-  padding-left: max(calc(30vw - 140px), 10px); }
-
-.important {
-  margin-top: calc(60px + 2vw);
-  margin-bottom: 10px; }
-
-.block {
-  display: block; }
-
-.square {
-  aspect-ratio: 1;
-  padding: 0;
-  margin: 0; }
-
 .circlebtn a {
   border-radius: 50%;
   display: flex;
@@ -182,6 +159,28 @@ footer {
       border: 1px solid #64c8ff;
       transition: all .3s; }
 
+.error-message {
+  color: crimson; }
+
+.home {
+  padding-right: max(calc(30vw - 140px), 10px);
+  padding-left: max(calc(30vw - 140px), 10px); }
+
+.important {
+  margin-top: calc(60px + 2vw);
+  margin-bottom: 10px; }
+
+.block {
+  display: block; }
+
+.inline-block {
+  display: inline-block; }
+
+.square {
+  aspect-ratio: 1;
+  padding: 0;
+  margin: 0; }
+
 .bg-cyan-blue {
   background: linear-gradient(#05FBFF, #1E00FF); }
 
@@ -199,6 +198,9 @@ footer {
 .bg-translucent {
   background-color: rgba(255, 255, 255, 0.5); }
 
+.wmin-70-12rem {
+  width: min(70%, 12rem); }
+
 .wmin-100-10rem {
   width: min(100%, 10rem); }
 
@@ -210,6 +212,9 @@ footer {
 
 .wmin-100-20rem {
   width: min(100%, 20rem); }
+
+.wmin-100-30rem {
+  width: min(100%, 30rem); }
 
 .m-0 {
   margin-right: auto;
@@ -227,15 +232,12 @@ footer {
   word-break: break-all;
   word-wrap: break-all; }
 
-label.item-name {
-  font-family: "游ゴシック 本文";
-  color: #000064;
-  font-weight: bolder;
-  margin-bottom: 5px; }
-
-p.item-name {
-  color: #000064;
-  font-weight: bolder; }
+.item-box {
+  margin-bottom: 10px; }
+  .item-box .item-name {
+    font-size: calc(0.8rem + 0.2vw); }
+  .item-box input, .item-box select, .item-box p {
+    font-size: calc(0.9rem + 0.2vw); }
 
 .pc {
   display: block !important; }
@@ -266,10 +268,9 @@ p.item-name {
     display: block !important; } }
 .param-botton button {
   background-color: white; }
-
-.param-botton button:hover {
-  color: white;
-  background-color: black; }
+  .param-botton button:hover {
+    color: white;
+    background-color: black; }
 
 .answer-button button {
   background: #0046ff;
@@ -277,7 +278,7 @@ p.item-name {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(90%, 150px);
+  width: min(90%, 120px);
   padding: 0.5rem;
   color: #FFF;
   flex-direction: column;
@@ -285,57 +286,61 @@ p.item-name {
   border-radius: 3rem;
   font-size: calc(1rem + 0.5vw);
   font-family: "HGS創英角ｺﾞｼｯｸUB"; }
+  .answer-button button:hover {
+    transition: 0.3s ease-in-out;
+    background-color: white;
+    color: blue; }
+    .answer-button button:hover::after {
+      transition: all .3s;
+      left: 80%;
+      border-color: blue; }
+    .answer-button button:hover span {
+      color: transparent;
+      background-color: transparent; }
+    .answer-button button:hover span::after {
+      border: none; }
+  .answer-button button span {
+    background: #FFFF00;
+    width: max(80%, 65px);
+    text-align: center;
+    position: absolute;
+    top: -23px;
+    filter: drop-shadow(0px 1px 2px #aaa);
+    padding: 3px 0;
+    font-size: calc(0.7rem + 0.2vw);
+    color: #2b7fde;
+    border-radius: 5px;
+    font-family: "游ゴシック 本文";
+    font-weight: 600;
+    transition: all .3s; }
+    .answer-button button span:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border: 5px solid transparent;
+      border-top: 5px solid #ffffff;
+      transition: all .3s; }
 
-.answer-button button span {
-  background: #FFFF00;
-  width: 80%;
-  text-align: center;
-  position: absolute;
-  top: -23px;
-  filter: drop-shadow(0px 1px 2px #aaa);
-  padding: 3px 0;
-  font-size: calc(0.7rem + 0.2vw);
-  color: #2b7fde;
-  border-radius: 5px;
-  font-family: "游ゴシック 本文";
-  font-weight: 600;
-  transition: all .3s; }
-
-.answer-button button::after {
-  content: "";
-  position: absolute;
-  top: 43%;
-  left: 10%;
-  transform: rotate(45deg);
-  width: 10px;
-  height: 10px;
-  border-top: solid 3px #ffffff;
-  border-right: solid 3px #ffffff; }
-
-.answer-button button span:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border: 5px solid transparent;
-  border-top: 5px solid #ffffff;
-  transition: all .3s; }
-
-.answer-button button:hover {
-  transition: 0.3s ease-in-out;
-  background-color: white;
-  color: blue; }
-  .answer-button button:hover span {
-    color: transparent;
-    background-color: transparent; }
-  .answer-button button:hover span::after {
-    border: none; }
-
-.answer-button button:hover::after {
-  transition: all .3s;
-  left: 80%;
-  border-color: blue; }
+.serch-botton button {
+  height: 50%;
+  width: min(90px, 75%);
+  margin-top: 5%;
+  background: rgba(255, 255, 255, 0.5);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  color: #000064;
+  border: solid 1px #0000a0;
+  font-size: calc(1rem + 0.5vw);
+  box-shadow: 0 3px 0 #000096;
+  transition: 0.1s;
+  border-radius: 8px;
+  font-weight: bolder; }
+  .serch-botton button:hover {
+    transform: translateY(3px);
+    box-shadow: none; }
 
 .account-botton {
   position: relative; }
@@ -375,5 +380,27 @@ p.item-name {
   font-size: calc(0.8rem + 0.3vw); }
 .terms li {
   font-size: calc(0.8rem + 0.3vw); }
+
+.display-hidden-botton {
+  width: calc(2rem + 4vw);
+  background: #e6e6ff;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  color: #000064;
+  border: solid 1px #0000a0;
+  font-size: calc(0.5rem + 1vw);
+  box-shadow: 0 3px 0 #000096;
+  transition: 0.1s;
+  border-radius: 8px;
+  font-weight: bolder;
+  vertical-align: top;
+  margin: 5px; }
+  .display-hidden-botton:hover {
+    transform: translateY(3px);
+    box-shadow: none; }
+
+.display-hidden {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

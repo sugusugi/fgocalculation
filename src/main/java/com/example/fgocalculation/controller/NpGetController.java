@@ -41,7 +41,7 @@ public class NpGetController {
     @RequestMapping("/calculator/npGet")
     public String index(Model model) {
         ToolNameForm form = new ServantSearchForm();
-        form.setToolName("NP計算");
+        form.setToolName("NP獲得量");
         model.addAttribute("form", form);
         model.addAttribute("servantParameter", new NpGetForm());
         model.addAttribute("overKillHitForm", new OverKillHitForm());
