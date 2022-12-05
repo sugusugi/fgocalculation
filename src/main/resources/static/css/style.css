@@ -144,6 +144,10 @@ footer {
     color: #000064;
     border: 1px solid #64c8ff;
     transition: all .3s; }
+.circlebtn .yet {
+  background: #d9d9d9;
+  cursor: default;
+  pointer-events: none; }
 
 .circlebtn-mini {
   margin: 0 auto 3vw auto;
@@ -158,6 +162,10 @@ footer {
       color: #000064;
       border: 1px solid #64c8ff;
       transition: all .3s; }
+  .circlebtn-mini .yet {
+    background: #d9d9d9;
+    cursor: default;
+    pointer-events: none; }
 
 .error-message {
   color: crimson; }
