@@ -17,12 +17,21 @@
 <title>FGO計算機～鬼周回への道～</title>
 </head>
 <body>
-	<div class = "important" layout:fragment="contents"></div>
+	<div class="important" layout:fragment="contents"></div>
 	<nav layout:replace="~{layouts/common::nav}"></nav>
 	<footer layout:replace="~{layouts/common::footer}"></footer>
-	<script src="/scripts/convert-post-method.js" th:src="@{/scripts/convert-post-method.js}"></script>
+	<script src="/scripts/convert-post-method.js"
+		th:src="@{/scripts/convert-post-method.js}"></script>
 	<script>
 		convertPostMethod('.convert-post-method');
+	</script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script>
+		$(function() {
+			$(".display-hidden-botton").click(function() {
+				$(".display-hidden").slideToggle("");
+			});
+		});
 	</script>
 </body>
 </html>
